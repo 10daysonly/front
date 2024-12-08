@@ -1,14 +1,14 @@
 "use client";
-import styles from "./invite-room.module.css";
 
 import React, { useEffect, useState } from "react";
-export default function Home() {
+
+export default function WebSocketComponent() {
   const [messages, setMessages] = useState<string[]>([]);
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
   useEffect(() => {
     // 웹소켓 서버 URL
-    const ws = new WebSocket("wss://your-websocket-server.com");
+    const ws = new WebSocket(process.env.WEBSOCKET_URL || "");
 
     // 연결 시 이벤트
     ws.onopen = () => {
@@ -40,13 +40,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>WebSocket Messages</h1>
-      <ul>
-        {messages.map((msg, idx) => (
-          <li key={idx}>{msg}</li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {messages.map((msg, idx) => (
+        <li key={idx}>{msg}</li>
+      ))}
+    </ul>
   );
 }
