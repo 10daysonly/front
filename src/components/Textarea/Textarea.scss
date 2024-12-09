@@ -1,0 +1,12 @@
+.ui-textarea textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  min-height: 135px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 10px;
+  border-radius: 8px;
+  font-size: 18px;
+  color: var(--text);
+  font-weight: bold;
+  box-sizing: border-box;
+}
