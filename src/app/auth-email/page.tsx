@@ -10,8 +10,11 @@ export default function Home() {
 
   const onFinish = async (values: any) => {
     console.log("폼 데이터:", values); // 제출된 데이터 출력
-    const response = await axios.post("/api/sendEmail", values);
 
+    //이메일 전송
+    // const response = await axios.post("/api/sendEmail", values);
+
+    message.warning("메일을 전송 하였습니다");
     router.push("/email-success");
   };
 
@@ -34,15 +37,15 @@ export default function Home() {
       >
         <Form.Item
           name="name"
-          rules={[{ required: true, message: "주최자 이름을 입력해주세요!" }]} // 필수 입력 필드
+          rules={[{ required: true, message: "이름을 입력해주세요!" }]} // 필수 입력 필드
         >
-          <Input placeholder="주최자 이름 입력" />
+          <Input placeholder="이름" />
         </Form.Item>
         <Form.Item
           name="email"
-          rules={[{ required: true, message: "주최자 이메일 입력을 입력해주세요!" }]} // 필수 입력 필드
+          rules={[{ required: true, message: "이메일 입력을 입력해주세요!" }]} // 필수 입력 필드
         >
-          <Input placeholder="주최자 이메일 계정 입력" />
+          <Input placeholder="이메일" />
         </Form.Item>
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit">
