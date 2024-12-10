@@ -7,16 +7,17 @@ import koKR from "antd/locale/ko_KR";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import { EditOutlined } from "@ant-design/icons";
-import ModalList from "./modal";
-import ModalImageList from "./modal";
-import { useAppSelector } from "../store";
+import { useAppDispatch, useAppSelector } from "../store";
 import { useRouter } from "next/navigation";
+import ImagesModal from "./imagesModal";
+import { setInviteCard } from "./invite-cardSlice";
 dayjs.locale("ko");
 
 export default function Home() {
-  const [image, setImage] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
+  const { fixButton } = useAppSelector((state) => state.navigationButtonSlice);
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const showModal = () => {
@@ -30,13 +31,20 @@ export default function Home() {
   const onFinish = (values: any) => {
     console.log("폼 데이터:", values); // 제출된 데이터 출력
 
-    // 쿠키나 세션 등으로 제어하기
-    if (true) {
-      router.push("/auth-email");
+    if (!fixButton) {
+      dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
+      // 쿠키나 세션 등으로 제어하기
+      if (true) {
+        router.push("/auth-email");
+      } else {
+        router.push("/share-links");
+      }
+      message.success("폼이 성공적으로 제출되었습니다!");
     } else {
-      router.push("/share-links");
+      router.back();
+      //경로로하면 찾아갈수있을지.. 데이터만 웹서비스에 담아주고 백하는게 맞는거같기도하고..
+      // router.push("/invite-room/te");
     }
-    message.success("폼이 성공적으로 제출되었습니다!");
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -47,13 +55,13 @@ export default function Home() {
   return (
     <div>
       <div>로고</div>
-      <ModalImageList visible={isModalVisible} onClose={handleCancel} />
+      <ImagesModal visible={isModalVisible} onClose={handleCancel} />
       <Form
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 300 }}
-        initialValues={{ remember: true }}
+        initialValues={inviteCard}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -61,7 +69,16 @@ export default function Home() {
         <Card
           hoverable
           style={{ width: 300 }}
-          cover={<Image alt="card image" src={inviteCard.image} width={300} height={200} />}
+          cover={
+            <Form.Item name="image">
+              <Image
+                width={300}
+                height={200}
+                src={inviteCard.image} // inviteCard에서 이미지를 가져오기
+                fallback="이미지가 없습니다" // 이미지가 없을 경우 대체 텍스트
+              />
+            </Form.Item>
+          }
         >
           <h3>카드 이미지</h3>
           <Button
@@ -113,9 +130,25 @@ export default function Home() {
         </Form.Item>
 
         <Form.Item label={null}>
-          <Button type="primary" htmlType="submit">
-            초대장 보내기 버튼
-          </Button>
+          {!fixButton ? (
+            <Button type="primary" htmlType="submit">
+              초대장 보내기 버튼
+            </Button>
+          ) : (
+            <>
+              <Button
+                type="primary"
+                onClick={() => {
+                  router.back();
+                }}
+              >
+                취소
+              </Button>
+              <Button type="primary" htmlType="submit">
+                수정완료
+              </Button>
+            </>
+          )}
         </Form.Item>
       </Form>
     </div>

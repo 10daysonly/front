@@ -24,7 +24,7 @@ interface ModalComponentProps {
   onClose: () => void;
 }
 
-export default function ModalImageList({ visible, onClose }: ModalComponentProps) {
+export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
   const [images, setImages] = useState([]);
   const dispatch = useAppDispatch();
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
@@ -36,6 +36,12 @@ export default function ModalImageList({ visible, onClose }: ModalComponentProps
       meme();
     }
   }, [activeKey]);
+
+  useEffect(() => {
+    if (activeKey == "3") {
+      meme();
+    }
+  }, [searchText]);
 
   // 이미지 업로드
   const imageUpload = async (info: any) => {

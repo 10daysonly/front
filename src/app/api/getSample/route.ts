@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const URL = process.env.SECRET_API_KEY;
+  const URL = process.env.API_URL;
   const Path = "test";
 
   try {

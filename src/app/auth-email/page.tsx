@@ -25,6 +25,14 @@ export default function Home() {
 
   return (
     <div>
+      <Button
+        type="default"
+        onClick={() => {
+          router.back();
+        }}
+      >
+        뒤로가기
+      </Button>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
