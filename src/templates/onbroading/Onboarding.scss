@@ -1,0 +1,43 @@
+.ui-fullpage {
+  position: relative;
+  height: 100vh;
+}
+
+.ui-fullpage .fixed-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.onboarding {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: calc(100% - 104px);
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.onboarding .onboarding-box {
+  display: inline-block;
+}
+.onboarding-logo {
+  width: 155px;
+  height: 155px;
+  margin: 0 auto;
+}
+
+.onboarding-logo img {
+  width: 100%;
+}
+
+.onboarding-title {
+  font-size: 32px;
+}
+
+.onboarding-subtitle {
+  margin-top: 12px;
+  font-size: 14px;
+}
