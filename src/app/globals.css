@@ -1,4 +1,4 @@
-@import "_variable.scss";
+@import "_variable.css";
 
 .ant-upload-list-item-container {
   display: none;
