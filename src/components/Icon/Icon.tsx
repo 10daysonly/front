@@ -3,12 +3,38 @@ import NextImage from "next/image";
 
 import "./Icon.scss";
 
+import back from "./imgs/icon-back.svg";
+import camera from "./imgs/icon-camera.svg";
+import edit from "./imgs/icon-edit.svg";
+import search from "./imgs/icon-search.svg";
+import calendar from "./imgs/icon-calendar.svg";
+import calendarLarge from "./imgs/icon-calendar-large.svg";
+import location from "./imgs/icon-location.svg";
+import locationLarge from "./imgs/icon-location-large.svg";
+import spark from "./imgs/icon-spark.svg";
+import sparkLarge from "./imgs/icon-spark-large.svg";
+import timeLarge from "./imgs/icon-time-large.svg";
+import share from "./imgs/icon-share.svg";
+
 interface IconMap {
   [key: string]: { src: string; width: number; height: number };
 }
 export type IconName = keyof typeof iconMap;
 
-const iconMap: IconMap = {};
+const iconMap: IconMap = {
+  back,
+  camera,
+  edit,
+  search,
+  calendar,
+  calendarLarge,
+  location,
+  locationLarge,
+  spark,
+  sparkLarge,
+  timeLarge,
+  share,
+};
 
 interface Props {
   icon: IconName;
