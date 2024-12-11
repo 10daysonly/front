@@ -1,0 +1,17 @@
+.ui-avatar {
+  overflow: hidden;
+  width: 28px;
+  height: 28px;
+  background: #d9d9d9;
+  border-radius: 50%;
+}
+
+.ui-avatar.size-large {
+  width: 36px;
+  height: 36px;
+}
+
+.ui-avatar img {
+  width: 100%;
+  height: auto;
+}
