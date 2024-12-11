@@ -1,0 +1,37 @@
+.ui-datainfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ui-datainfo dt.datainfo-icon {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  background: #29253d;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui-datainfo .datainfo-box {
+  flex: 1;
+  color: var(--text);
+}
+
+.ui-datainfo dt.datainfo-icon + .datainfo-box {
+  padding-left: 12px;
+}
+
+.datainfo-box dt.datainfo-title {
+  font-size: 12px;
+}
+
+.datainfo-box dd.datainfo-content {
+  font-size: 18px;
+  margin-top: 4px;
+}
+
+.ui-datainfo + .ui-datainfo {
+  margin-top: 12px;
+}
