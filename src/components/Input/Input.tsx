@@ -3,6 +3,8 @@ import React from "react";
 import "./Input.scss";
 
 interface Props {
+  variant?: "default" | "normal";
+  size?: "default" | "small";
   title?: string;
   placeholder?: string;
   value?: string;
@@ -10,9 +12,17 @@ interface Props {
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-const Input = ({ title, placeholder, value, onChange, onFocus }: Props) => {
+const Input = ({
+  variant = "default",
+  size,
+  title,
+  placeholder,
+  value,
+  onChange,
+  onFocus,
+}: Props) => {
   return (
-    <div className={`ui-form ui-input`}>
+    <div className={`ui-form ui-input variant-${variant} ${size ? `size-${size}` : ""}`}>
       <input
         value={value}
         title={title}

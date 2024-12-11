@@ -31,3 +31,22 @@ export const Example: Story = {
     },
   ],
 };
+
+export const Placeholder: Story = {
+  args: {
+    placeholder: "placeholder",
+  },
+};
+
+export const SizeSmall: Story = {
+  args: {
+    size: "small",
+  },
+};
+
+export const Normal: Story = {
+  args: {
+    variant: "normal",
+    placeholder: "normal",
+  },
+};
