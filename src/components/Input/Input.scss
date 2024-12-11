@@ -1,0 +1,44 @@
+.ui-input input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  background-clip: padding-box;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text);
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.ui-input input::placeholder {
+  font-size: 14px;
+  color: var(--placeholder);
+}
+
+.ui-input input:focus {
+  border: 1px solid rgba(255, 255, 255, 1);
+  color: var(--focus-color);
+  outline: none;
+}
+
+.ui-input.size-small input {
+  height: 40px;
+  font-size: 14px;
+}
+
+.ui-input.variant-normal input {
+  background: rgba(20, 20, 52, 0.08);
+  background-clip: padding-box;
+  border-color: rgba(20, 20, 52, 0.08);
+  color: #6d7383;
+}
+
+.ui-input.variant-normal input::placeholder {
+  color: rgba(20, 20, 52, 0.08);
+}
+
+.ui-form + .ui-form {
+  margin-top: 12px;
+}

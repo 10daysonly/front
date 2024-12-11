@@ -1,0 +1,21 @@
+.ui-msg-info {
+  text-align: center;
+  color: var(--text-reverse);
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+.ui-msg-info .msg-info-icon {
+  display: inline-block;
+  margin: 0 auto 24px;
+}
+
+.ui-msg-info .msg-info-title {
+  font-size: 20px;
+}
+
+.ui-msg-info .msg-info-subtitle {
+  font-size: 16px;
+}
+.ui-msg-info .msg-info-title + .msg-info-subtitle {
+  margin-top: 12px;
+}

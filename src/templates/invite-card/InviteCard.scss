@@ -1,0 +1,24 @@
+.invite-card-page {
+  background-image: linear-gradient(#e1e6fe, #8a7bfe 57%, #674ffe 100%),
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+}
+.invite-card-page .img-edit {
+  overflow: hidden;
+  position: relative;
+  width: 155px;
+  height: 155px;
+  margin: 0 auto 40px;
+}
+
+.invite-card-page .img-edit .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0;
+}
+
+.invite-card-page .btn-box {
+  padding-top: 40px;
+  padding-left: 0;
+  padding-right: 0;
+}

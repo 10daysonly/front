@@ -1,0 +1,58 @@
+.ui-formgroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.ui-formgroup .formgroup-title {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.ui-formgroup .formgroup-title.size-large {
+  top: 10px;
+  font-size: 20px;
+}
+.ui-formgroup .formgroup-title.required:after {
+  content: "*";
+  display: inline;
+  position: relative;
+  top: -2px;
+  color: var(--primary);
+}
+
+.ui-formgroup .formgroup-title .icon {
+  margin-right: 4px;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+
+.ui-formgroup .formgroup-content {
+  flex: 1;
+}
+
+.ui-formgroup .formgroup-content .ui-form input {
+  padding-left: 30%;
+}
+
+.ui-formgroup.direction-vertical {
+  display: block;
+}
+.ui-formgroup.direction-vertical .formgroup-title {
+  position: static;
+  font-size: 16px;
+}
+.ui-formgroup.direction-vertical .formgroup-content {
+  margin-top: 8px;
+}
+.ui-formgroup.direction-vertical .formgroup-content .ui-form input {
+  padding-left: 10px;
+}
+
+.ui-formgroup + .ui-formgroup {
+  margin-top: 16px;
+}
