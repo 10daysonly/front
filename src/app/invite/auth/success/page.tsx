@@ -4,8 +4,10 @@ import { Button, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useState } from "react";
+import { useAppSelector } from "@/app/store";
 
 export default function Home() {
+  const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
   const [clicked, setClicked] = useState(false); // 클릭 여부 상태
   const router = useRouter();
 
@@ -14,11 +16,13 @@ export default function Home() {
       //이메일 전송
       // const response = await axios.post("/api/sendEmail", values);
 
-      message.warning("메일을 재전송 하였습니다");
+      // const allOfInfo = { ...inviteCard, hostName: values.name, hostEmail: values.hostEmail };
+      // console.log(allOfInfo);
+
       setClicked(true);
     } else {
       message.warning("메일을 확인 부탁드립니다.");
-      router.push("/auth-email"); // 이동할 페이지 경로 설정
+      router.push("/invite/auth/sending"); // 이동할 페이지 경로 설정
     }
   };
 

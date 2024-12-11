@@ -7,7 +7,7 @@ import koKR from "antd/locale/ko_KR";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import { EditOutlined } from "@ant-design/icons";
-import { useAppDispatch, useAppSelector } from "../store";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import { useRouter } from "next/navigation";
 import ImagesModal from "./imagesModal";
 import { setInviteCard } from "./invite-cardSlice";
@@ -35,7 +35,7 @@ export default function Home() {
       dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
       // 쿠키나 세션 등으로 제어하기
       if (true) {
-        router.push("/auth-email");
+        router.push("/invite/auth/sending");
       } else {
         router.push("/share-links");
       }
@@ -98,14 +98,14 @@ export default function Home() {
         </Form.Item>
         <ConfigProvider locale={koKR}>
           <Form.Item
-            name="date"
+            name="meetAt"
             rules={[{ required: true, message: "모임 날짜 선택해주세요!" }]} // 필수 입력 필드
           >
             <DatePicker style={{ width: "100%" }} />
           </Form.Item>
         </ConfigProvider>
         <Form.Item
-          name="place"
+          name="location"
           rules={[{ required: true, message: "모임 장소 입력를 입력해주세요!" }]} // 필수 입력 필드
         >
           <Input placeholder="모임 장소 입력" />
@@ -117,13 +117,13 @@ export default function Home() {
           <Input placeholder="모임 드레스코드 입력" />
         </Form.Item>
         <Form.Item
-          name="desc"
+          name="additionalInfo"
           rules={[{ required: true, message: "모임 기타 안내 사항 입력해주세요!" }]} // 필수 입력 필드
         >
           <Input placeholder="모임 기타 안내 사항 입력" />
         </Form.Item>
         <Form.Item
-          name="message"
+          name="intro"
           rules={[{ required: true, message: "이름을 입력해주세요!" }]} // 필수 입력 필드
         >
           <Input placeholder="초대장 메시지 입력" />

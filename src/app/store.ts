@@ -2,8 +2,8 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import inviteCardSlice from "./invite-card/invite-cardSlice";
-import navigationButtonSlice from "./invite-room/[id]/_roomInfo/navigationButton/navigationButtonSlice";
+import inviteCardSlice from "@/app/invite/upsert/invite-cardSlice";
+import navigationButtonSlice from "@/app/gatherings/[gatheringId]/participants/_roomInfo/navigationButton/navigationButtonSlice";
 
 export const store = configureStore({
   reducer: { inviteCardSlice, navigationButtonSlice },
