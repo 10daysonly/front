@@ -1,0 +1,30 @@
+.ui-tabs .tabs-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.tabs-list .tabs-list-item {
+  flex: 1;
+  cursor: pointer;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: var(--text-reverse);
+  padding-bottom: 24px;
+}
+
+.tabs-list .tabs-list-item.active {
+  position: relative;
+  color: var(--primary);
+}
+
+.tabs-list .tabs-list-item.active:after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 2px;
+  background: var(--primary);
+}
