@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./DataInfo.scss";
 
 interface Props {
