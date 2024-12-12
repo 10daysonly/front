@@ -1,8 +1,14 @@
 .ui-msg-info {
   text-align: center;
-  color: var(--text-reverse);
+  display: flex;
+  color: var(--text);
+
   padding: 24px 32px;
   box-sizing: border-box;
+  width: 100%;
+  align-self: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .ui-msg-info .msg-info-icon {
   display: inline-block;
@@ -11,6 +17,9 @@
 
 .ui-msg-info .msg-info-title {
   font-size: 20px;
+  background: linear-gradient(0deg, #e1e6fe, #f1d7ff, #319197);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .ui-msg-info .msg-info-subtitle {
