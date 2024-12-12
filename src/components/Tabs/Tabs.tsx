@@ -17,10 +17,6 @@ interface Props {
 }
 
 const Tabs = ({ items, activeKey = items?.[0]?.key, onChange }: Props) => {
-  console.log("activeKey", activeKey);
-  console.log("onChange", onChange);
-  console.log("items", items);
-
   return (
     <div className={`ui-tabs`}>
       <div className={`tabs-list`}>
