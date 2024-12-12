@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@mobiscroll/react": "npm:@mobiscroll/react-next-trial@^5.32.2",
     "next": "15.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
