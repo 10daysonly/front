@@ -1,7 +1,15 @@
 "use client";
 
-import { Avatar, Button, Form, Input, List, message, Skeleton } from "antd";
+import { Form, List, message, Skeleton } from "antd";
 import { useEffect, useState } from "react";
+
+import ContentBox from "@/components/ContentBox";
+import Typography from "@/components/Typography";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import Avatar from "@/components/Avatar";
+import ChatBubble from "@/components/ChatBubble";
+import Box from "@/components/Box";
 
 export default function GuestbookForm() {
   const [messages, setMessages] = useState<string[]>([]);
@@ -123,40 +131,33 @@ export default function GuestbookForm() {
       message.error("입력된 값이 없습니다.");
     }
   };
+
   return (
-    <ul>
-      {/* {messages.map((msg, idx) => (
-        <li key={idx}>{msg}</li>
-      ))} */}
-      <Input></Input>
-      <Form>
-        <Form.Item label="내용">
-          <Input placeholder="등록할 텍스트를 입력하세요" value={value} onChange={handleChange} />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" onClick={handleSubmit} block>
-            등록
-          </Button>
-        </Form.Item>
-      </Form>
-      <List
-        className="demo-loadmore-list"
-        loading={initLoading}
-        itemLayout="horizontal"
-        loadMore={loadMore}
-        dataSource={list}
-        renderItem={(item) => (
-          <List.Item actions={[<a key="list-loadmore-edit">X</a>]}>
-            <Skeleton avatar title={false} loading={item.loading} active>
-              <List.Item.Meta
-                avatar={<Avatar src={item.picture.large} />}
-                title={<a href="https://ant.design">{item.name?.last}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              />
-            </Skeleton>
-          </List.Item>
-        )}
-      />
-    </ul>
+    <div className="guestbook-form">
+      <ContentBox>
+        <Typography>방명록</Typography>
+        <Box line={true}>
+          <div className="guestbook-form-resgister">
+            <Input placeholder="등록할 텍스트를 입력하세요" value={value} onChange={handleChange} />
+            <Button onClick={handleSubmit}>등록</Button>
+          </div>
+          <div className="guestbook-list">
+            {list.map((item) => {
+              return (
+                <ChatBubble
+                  avatar={<Avatar color="reverse" src={item.picture.large} />}
+                  time="12:40"
+                  direction={"left"} /** "right" */
+                >
+                  Ant Design, a design language for background applications, is refined by Ant UED
+                  Team
+                </ChatBubble>
+              );
+            })}
+          </div>
+        </Box>
+        {initLoading}
+      </ContentBox>
+    </div>
   );
 }

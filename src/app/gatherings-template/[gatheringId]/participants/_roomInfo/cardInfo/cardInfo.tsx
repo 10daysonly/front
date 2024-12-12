@@ -1,35 +1,34 @@
 "use client";
 
+import Typography from "@/components/Typography";
+import Icon from "@/components/Icon";
+import DataInfo from "@/components/DataInfo";
+import Box from "@/components/Box";
+
 export default function CardInfo() {
   return (
-    <div style={{ display: "grid", gap: "10px" }}>
-      <div style={{ display: "flex" }}>
-        <div>
-          <small>Date</small>
-          <br />
-          <p>12월22일 일요일ㅤㅤ</p>
-        </div>
-        <div>
-          <small>Time</small>
-          <br />
-          <p>오후 7시</p>
-        </div>
-      </div>
-      <div>
-        <small>Location</small>
-        <p>No location set(장소 미정)</p>
-      </div>
-      <div>
-        <small>Dress code</small>
-        <p>크리스마스 트리</p>
-      </div>
-      <div>
-        <small>Additional Info</small>
-        <p>선물교환식은 현장에서 랜덤으로 교환하세요!</p>
-      </div>
-      <hr />
-      <text>test</text>
-      <hr />
+    <div className={`invite-info`}>
+      <Typography level={1}>연말 와인 파티의 밤</Typography>
+      <DataInfo icon={<Icon icon="calendarLarge" />} title="Date">
+        12 월 22일 일요일
+      </DataInfo>
+      <DataInfo icon={<Icon icon="timeLarge" />} title="Time">
+        오후 7시
+      </DataInfo>
+      <DataInfo icon={<Icon icon="locationLarge" />} title="Location">
+        성수동 한옥집 와인 카페
+      </DataInfo>
+      <DataInfo icon={<Icon icon="sparkLarge" />} title="Dress code">
+        빨간새, 화려한 색의 원피스
+      </DataInfo>
+      <DataInfo title="Additional info">
+        Lorem ipsum dolor sit amet consectetur adipisicing
+      </DataInfo>
+      <Box>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae quisquam, nesciunt voluptates
+        ad officiis quidem, excepturi culpa omnis officia sapiente facere ut iusto sed velit?
+        Obcaecati ut adipisci sed accusamus?
+      </Box>
     </div>
   );
 }

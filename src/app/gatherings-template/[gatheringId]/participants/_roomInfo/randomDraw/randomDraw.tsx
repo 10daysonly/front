@@ -1,27 +1,54 @@
 import { Radio } from "antd";
 import { useState } from "react";
 
-export default function RandomDraw() {
-  const [value, setValue] = useState(1);
+import ContentBox from "@/components/ContentBox";
+import Typography from "@/components/Typography";
+import Button from "@/components/Button";
+import Box from "@/components/Box";
+import Text from "@/components/Text";
 
-  const onChange = (e: any) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
+export default function RandomDraw() {
+  const [value, setValue] = useState("option1");
+
+  const onChange = (value: any) => {
+    setValue(value);
   };
 
   return (
-    <div>
-      <p>랜덤 뽑기</p>
-      <Radio.Group
-        onChange={onChange}
-        value={value}
-        optionType="button"
-        buttonStyle="solid"
-        style={{ display: "flex", flexDirection: "column", gap: "8px" }} // 세로 정렬 및 간격 추가
-      >
-        <Radio.Button value="option1">마니또 뽑기(본인 제외 랜덤)</Radio.Button>
-        <Radio.Button value="option2">랜덤 뽑기(완전 무작위)</Radio.Button>
-      </Radio.Group>
+    <div className="random-draw">
+      <ContentBox>
+        <Typography>랜덤 뽑기</Typography>
+        <Box line={true}>
+          <Button
+            block={true}
+            color={value === `option1` ? "active" : "info-reverse"}
+            onClick={() => {
+              setValue("option1");
+            }}
+          >
+            <Text strong={true} size="large">
+              마니또 뽑기
+            </Text>
+            (본인 제외 랜덤)
+          </Button>
+          <Button
+            block={true}
+            color={value === `option2` ? "active" : "info-reverse"}
+            onClick={() => {
+              setValue("option2");
+            }}
+          >
+            <Text strong={true} size="large">
+              랜덤 뽑기
+            </Text>
+            (완전 무작위)
+          </Button>
+          {/* <div className="random-draw-result">
+            <Box>결과값</Box>
+          </div> */}
+          <Button color={`primary`}>시작</Button>
+        </Box>
+      </ContentBox>
     </div>
   );
 }
