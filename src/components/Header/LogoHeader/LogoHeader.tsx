@@ -1,15 +1,16 @@
 import React from "react";
 import NextImage from "next/image";
 
-import "./Header.scss";
+import "../Header.scss";
+import "./LogoHeader.scss";
 
-import logo from "./imgs/logo.svg";
+import logo from "../imgs/logo.svg";
 
 interface Props {}
 
-const Header = ({}) => {
+const LogoHeader = ({}) => {
   return (
-    <header className={`header`}>
+    <header className={`header logo-header`}>
       <h1 className={`logo`}>
         <a href="#">
           <NextImage src={logo.src} width={logo.width} height={logo.height} alt="" />
@@ -20,4 +21,4 @@ const Header = ({}) => {
   );
 };
 
-export default Header;
+export default LogoHeader;

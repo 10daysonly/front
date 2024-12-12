@@ -4,6 +4,7 @@ import NextImage from "next/image";
 import "./Icon.scss";
 
 import back from "./imgs/icon-back.svg";
+import backReverse from "./imgs/icon-back-reverse.svg";
 import camera from "./imgs/icon-camera.svg";
 import edit from "./imgs/icon-edit.svg";
 import search from "./imgs/icon-search.svg";
@@ -23,6 +24,7 @@ export type IconName = keyof typeof iconMap;
 
 const iconMap: IconMap = {
   back,
+  backReverse,
   camera,
   edit,
   search,

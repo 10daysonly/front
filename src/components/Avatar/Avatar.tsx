@@ -8,11 +8,12 @@ interface Props {
   width?: number;
   height?: number;
   size?: "large";
+  color?: "default" | "reverse";
 }
 
-const Avatar = ({ src, size, width, height }: Props) => {
+const Avatar = ({ src, size, color, width, height }: Props) => {
   return (
-    <div className={`ui-avatar ${size ? `size-${size}` : ""}`}>
+    <div className={`ui-avatar ${size ? `size-${size}` : ""} ${color ? `color-${color}` : " "}`}>
       {src && <NextImage src={src} width={width} height={height} alt="" />}
     </div>
   );

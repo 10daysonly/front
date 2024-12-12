@@ -5,6 +5,7 @@ import "./MsgInfo.scss";
 
 const msgIcon = {
   confirm,
+  info,
 };
 
 type MsgIcon = keyof typeof msgIcon;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 import confirm from "./imgs/msg-icon-confirm.svg";
+import info from "./imgs/msg-icon-info.svg";
 
 const MsgInfo = ({ title, subtitle, icon }: Props) => {
   return (

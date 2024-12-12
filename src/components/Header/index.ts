@@ -1,3 +1,4 @@
-import Header from "./Header";
+import LogoHeader from "./LogoHeader";
+import BackHeader from "./BackHeader";
 
-export default Header;
+export { LogoHeader, BackHeader };

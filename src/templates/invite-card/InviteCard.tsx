@@ -3,6 +3,7 @@ import React from "react";
 import "./InviteCard.scss";
 
 import Layout from "@/components/Layout";
+import { LogoHeader } from "@/components/Header";
 import Main from "@/components/Main";
 
 import ContentBox from "@/components/ContentBox";
@@ -19,6 +20,7 @@ import dummyImage from "@/components/Image/imgs/dummyImage.png";
 const InviteCard = () => {
   return (
     <Layout page="invite-card">
+      <LogoHeader />
       <Main>
         <ContentBox>
           <div className="img-edit">

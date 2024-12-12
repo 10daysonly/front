@@ -1,0 +1,59 @@
+.ui-chat-bubble {
+  position: relative;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.ui-chat-bubble.direction-left .chat-bubble-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ui-chat-bubble.direction-right .chat-bubble-avatar {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.ui-chat-bubble .chat-bubble-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.ui-chat-bubble.direction-rgiht .chat-bubble-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.ui-chat-bubble .chat-bubble-box .chat-bubble-content {
+  border-radius: 16px;
+  border-top-left-radius: 0;
+  background: #ffffff;
+  font-size: 12px;
+  padding: 5px 16px;
+  color: var(--text-reverse);
+}
+
+.ui-chat-bubble.direciton-right .chat-bubble-box .chat-bubble-content {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 0;
+}
+
+.ui-chat-bubble .chat-bubble-box .chat-bubble-time {
+  align-self: flex-end;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+}
+
+.ui-chat-bubble.direction-left .chat-bubble-box .chat-bubble-time {
+  padding-left: 8px;
+}
+
+.ui-chat-bubble.direction-right .chat-bubble-box .chat-bubble-time {
+  padding-right: 8px;
+}
+
+.ui-chat-bubble + .ui-chat-bubble {
+  margin-top: 24px;
+}

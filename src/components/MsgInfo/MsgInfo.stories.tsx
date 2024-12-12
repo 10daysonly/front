@@ -22,3 +22,11 @@ export const Confrim: Story = {
     icon: "confirm",
   },
 };
+
+export const Info: Story = {
+  args: {
+    title: "title",
+    subtitle: "subtitle",
+    icon: "info",
+  },
+};

@@ -1,6 +1,7 @@
 import "./AuthEmail.scss";
 
 import Layout from "@/components/Layout";
+import { BackHeader } from "@/components/Header";
 import Main from "@/components/Main";
 
 import Typography from "@/components/Typography";
@@ -12,6 +13,7 @@ import ButtonBox from "@/components/ButtonBox";
 const AuthEmail = () => {
   return (
     <Layout page="auth-email">
+      <BackHeader />
       <Main>
         {/* host */}
         <Typography>
@@ -49,6 +51,7 @@ const AuthEmail = () => {
           <Button color="primary" size="large" block={true}>
             본인 확인하기
           </Button>
+          <p className="info-text">참석이 힘들다면 참석자 목록에서 참가를 취소할 수 있어요.</p>
         </ButtonBox>
       </Main>
     </Layout>
