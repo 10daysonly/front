@@ -1,26 +1,52 @@
 "use client";
-import { Button } from "antd";
-import styles from "./main.module.css";
+import NextImage from "next/image";
+
 import { useRouter } from "next/navigation";
+
+import "./Onboarding.scss";
+import "./onboarding.module.css"; // custom css
+
+import Layout from "@/components/Layout";
+import Main from "@/components/Main";
+import Button from "@/components/Button";
+import ButtonBox from "@/components/ButtonBox";
+
+import logo from "./imgs/logo.svg";
 
 export default function Home() {
   const router = useRouter();
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <div>로고</div>
-        <br />
-        <div>일산 속 만남도 특별한 즐거움으로!</div>
-        <br />
-        <Button
-          type="primary"
-          onClick={() => {
-            router.push("/invite/upsert");
-          }}
-        >
-          시작
-        </Button>
-      </main>
-    </div>
+    <Layout page="onboarding">
+      <Main>
+        <div className={`ui-fullpage`}>
+          <div className={`onboarding`}>
+            <div className={`onboarding-box`}>
+              <div className={`onboarding-logo`}>
+                <NextImage src={logo.src} width={logo.width} height={logo.height} alt={``} />
+              </div>
+              <p className={`onboarding-title`}>
+                Make A <br />
+                Ringley Letter !
+              </p>
+              <p className={`onboarding-subtitle`}>링글리를 통해 초대해 보아요!</p>
+            </div>
+          </div>
+          <div className={`fixed-bottom`}>
+            <ButtonBox>
+              <Button
+                block={true}
+                size="large"
+                color={`primary`}
+                onClick={() => {
+                  router.push("/invite/upsert");
+                }}
+              >
+                시작하기
+              </Button>
+            </ButtonBox>
+          </div>
+        </div>
+      </Main>
+    </Layout>
   );
 }
