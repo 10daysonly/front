@@ -14,7 +14,15 @@ interface Props {
 const Avatar = ({ src, size, color, width, height }: Props) => {
   return (
     <div className={`ui-avatar ${size ? `size-${size}` : ""} ${color ? `color-${color}` : " "}`}>
-      {src && <NextImage src={src} width={width} height={height} alt="" />}
+      {src && (
+        <NextImage
+          src={src}
+          width={width}
+          height={height}
+          {...(!(width || height) && { layout: "fill" })}
+          alt=""
+        />
+      )}
     </div>
   );
 };
