@@ -37,3 +37,9 @@ export const SizeLarge: Story = {
     height: dummyImage2.height,
   },
 };
+
+export const ColorReverse: Story = {
+  args: {
+    color: "reverse",
+  },
+};
