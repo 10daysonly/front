@@ -5,17 +5,12 @@ import "./PreviewCard.scss";
 import Layout from "@/components/Layout";
 import Main from "@/components/Main";
 
-import ContentBox from "@/components/ContentBox";
 import Typography from "@/components/Typography";
 import Image from "@/components/Image";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import DataInfo from "@/components/DataInfo";
-import Input from "@/components/Input";
-import Avatar from "@/components/Avatar";
-import ChatBubble from "@/components/ChatBubble";
 import Box from "@/components/Box";
-import Text from "@/components/Text";
 import Dim from "@/components/Dim";
 
 import dummyImage from "@/components/Image/imgs/dummyImage.png";
