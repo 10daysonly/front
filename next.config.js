@@ -11,4 +11,8 @@ module.exports = {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL, // 환경 변수를 클라이언트에서 사용하도록 설정
   },
+  images: {
+    domains: ["randomuser.me"],
+    disableStaticImages: false, // 정적 이미지를 지원하도록 설정
+  },
 };
