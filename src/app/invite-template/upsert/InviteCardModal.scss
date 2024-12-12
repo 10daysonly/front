@@ -1,0 +1,44 @@
+.invite-card-modal {
+  position: relative;
+  min-height: calc(100vh - 150px);
+}
+.invite-card-modal .search-header {
+  display: flex;
+  flex-direction: row;
+  padding: 40px 16px 16px;
+}
+
+.invite-card-modal .search-header .btn {
+  width: 32px;
+  height: 32px;
+  min-width: 0;
+  margin-right: 15px;
+  padding: 0;
+}
+
+.invite-card-modal .search-header .search-box {
+  position: relative;
+  flex: 1;
+}
+
+.invite-card-modal .search-header .search-box .icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  pointer-events: none;
+}
+
+.invite-card-modal .image-list-box {
+  padding: 24px 16px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.invite-card-modal .btn-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 16px 32px;
+  box-sizing: border-box;
+}
