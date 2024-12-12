@@ -15,7 +15,7 @@ export default function Home() {
         <Button
           type="primary"
           onClick={() => {
-            router.push("/invite-card");
+            router.push("/invite/upsert");
           }}
         >
           시작

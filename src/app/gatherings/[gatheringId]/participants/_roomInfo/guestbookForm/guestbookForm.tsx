@@ -146,9 +146,7 @@ export default function GuestbookForm() {
         loadMore={loadMore}
         dataSource={list}
         renderItem={(item) => (
-          <List.Item
-            actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
-          >
+          <List.Item actions={[<a key="list-loadmore-edit">X</a>]}>
             <Skeleton avatar title={false} loading={item.loading} active>
               <List.Item.Meta
                 avatar={<Avatar src={item.picture.large} />}

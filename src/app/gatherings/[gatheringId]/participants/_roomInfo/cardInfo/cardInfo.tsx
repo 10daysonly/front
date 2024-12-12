@@ -30,8 +30,6 @@ export default function CardInfo() {
       <hr />
       <text>test</text>
       <hr />
-      <small>참석예정자 수</small>
-      <p>15 명</p>
     </div>
   );
 }

@@ -2,10 +2,11 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import inviteCardSlice from "./invite-card/invite-cardSlice";
+import inviteCardSlice from "@/app/invite/upsert/invite-cardSlice";
+import navigationButtonSlice from "@/app/gatherings/[gatheringId]/participants/_roomInfo/navigationButton/navigationButtonSlice";
 
 export const store = configureStore({
-  reducer: { inviteCardSlice },
+  reducer: { inviteCardSlice, navigationButtonSlice },
   middleware: (defaultMiddleware) =>
     defaultMiddleware({
       serializableCheck: false,
