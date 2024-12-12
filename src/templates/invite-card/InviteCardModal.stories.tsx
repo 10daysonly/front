@@ -17,4 +17,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Page: Story = {
   args: {},
+  decorators: [
+    (Story) => {
+      return (
+        <>
+          <div style={{ height: "800px" }}></div>
+          <Story />
+        </>
+      );
+    },
+  ],
 };
