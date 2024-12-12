@@ -19,6 +19,10 @@ export const BackIcon: Story = {
   args: { icon: "back" },
 };
 
+export const BackReverseIcon: Story = {
+  args: { icon: "backReverse" },
+};
+
 export const CameraIcon: Story = {
   args: { icon: "camera" },
 };
