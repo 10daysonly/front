@@ -13,7 +13,7 @@ import Icon from "@/components/Icon";
 import DataInfo from "@/components/DataInfo";
 import Input from "@/components/Input";
 import Avatar from "@/components/Avatar";
-import List from "@/components/List";
+import ChatBubble from "@/components/ChatBubble";
 import Box from "@/components/Box";
 import Text from "@/components/Text";
 
@@ -97,29 +97,20 @@ const InviteRoom = () => {
                 <Input />
                 <Button>등록</Button>
               </div>
-              <List
-                dataSource={[
-                  {
-                    name: "이민지",
-                    url: "",
-                    notice:
-                      "Ant Design, a design language for background applications, is refined by Ant UED Team",
-                  },
-                  {
-                    name: "이민지",
-                    url: "",
-                    notice:
-                      "Ant Design, a design language for background applications, is refined by Ant UED Team",
-                  },
-                ]}
-                renderItem={(item) => {
-                  return (
-                    <List.Item>
-                      <List.Item.Meta avatar={<Avatar />} title="name" description="wow" />
-                    </List.Item>
-                  );
-                }}
-              />
+              <div className="guestbook-list">
+                <ChatBubble avatar={<Avatar color="reverse" />} time="12:40">
+                  Ant Design, a design language for background applications, is refined by Ant UED
+                  Team
+                </ChatBubble>
+                <ChatBubble avatar={<Avatar color="reverse" />} time="12:40" direction="right">
+                  Ant Design, a design language for background applications, is refined by Ant UED
+                  Team
+                </ChatBubble>
+                <ChatBubble avatar={<Avatar color="reverse" />} time="12:40">
+                  Ant Design, a design language for background applications, is refined by Ant UED
+                  Team
+                </ChatBubble>
+              </div>
             </Box>
           </ContentBox>
         </div>
