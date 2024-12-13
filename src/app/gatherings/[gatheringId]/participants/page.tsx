@@ -14,6 +14,13 @@ import axios from "axios";
 import { getGatherings } from "./thunks";
 import { decodeToken } from "@/app/utils/token";
 
+import "./InviteRoom.scss";
+import "./invite-room.module.css"; // custom css
+
+import Layout from "@/components/Layout";
+import Main from "@/components/Main";
+import ContentBox from "@/components/ContentBox";
+
 export default function Home() {
   const { gatheringId } = useParams();
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
@@ -52,12 +59,16 @@ export default function Home() {
   // }
 
   return (
-    <div>
-      <CardInfo />
-      <Attendee />
-      <RandomDraw />
-      <GuestbookForm />
-      <NavigationButton />
-    </div>
+    <Layout page="invite-room">
+      <Main>
+        <ContentBox>
+          <CardInfo />
+          <Attendee />
+        </ContentBox>
+        <RandomDraw />
+        <GuestbookForm />
+        <NavigationButton />
+      </Main>
+    </Layout>
   );
 }
