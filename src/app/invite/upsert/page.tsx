@@ -1,8 +1,16 @@
 "use client";
+
+import React from "react";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./invite-card.module.css";
-import { Button, Card, ConfigProvider, DatePicker, Form, Image, Input, message } from "antd";
+
+import "./InviteCard.scss";
+import "./CustomInviteCard.scss";
+import "./invite-card.module.css"; // custom css
+
+// import { Button, Card, ConfigProvider, DatePicker, Form, Image, Input, message } from "antd";
+import { ConfigProvider, DatePicker, Form, Input, message } from "antd";
 import koKR from "antd/locale/ko_KR";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
@@ -13,6 +21,21 @@ import ImagesModal from "./imagesModal";
 import { setInviteCard } from "../../slice";
 import { postGatherings } from "../auth/thunk";
 dayjs.locale("ko");
+
+import Layout from "@/components/Layout";
+import { LogoHeader } from "@/components/Header";
+import Main from "@/components/Main";
+
+import ContentBox from "@/components/ContentBox";
+import Image from "@/components/Image";
+import FormGroup from "@/components/FormGroup";
+// import Input from "@/components/Input";
+// import Textarea from "@/components/Textarea";
+import Button from "@/components/Button";
+import ButtonBox from "@/components/ButtonBox";
+import Icon from "@/components/Icon";
+
+import dummyImage from "@/components/Image/imgs/dummyImage.png";
 
 export default function Home() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -100,104 +123,141 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <div>로고</div>
+    <Layout page="invite-card">
+      <LogoHeader />
       <ImagesModal visible={isModalVisible} onClose={handleCancel} />
-      <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 300 }}
-        initialValues={{ ...inviteCard, meetAt: dayjs(inviteCard.meetAt) }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
+      <Main>
+        <ContentBox>
+          <Form
+            name="basic"
+            labelCol={{ span: 8 }}
+            wrapperCol={{ span: 16 }}
+            initialValues={inviteCard}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+          >
             <Form.Item name="image">
-              <Image
-                width={300}
-                height={200}
-                src={inviteCard.image} // inviteCard에서 이미지를 가져오기
-                fallback="이미지가 없습니다" // 이미지가 없을 경우 대체 텍스트
-              />
+              <div className="img-edit">
+                <Image src={inviteCard.image} />
+                <Button
+                  color="primary"
+                  size="small"
+                  icon={<Icon icon="edit" />}
+                  iconPosition="start"
+                  onClick={() => {
+                    showModal();
+                  }}
+                >
+                  Edit
+                </Button>
+              </div>
             </Form.Item>
-          }
-        >
-          <h3>카드 이미지</h3>
-          <Button
-            type="primary"
-            icon={<EditOutlined />}
-            style={{ position: "absolute", bottom: 10, right: 10 }}
-            onClick={showModal}
-          >
-            수정 아이콘
-          </Button>
-        </Card>
-        <Form.Item
-          name="name"
-          rules={[{ required: true, message: "모임 제목을 입력해주세요!" }]} // 필수 입력 필드
-        >
-          <Input placeholder="모임 제목 입력" />
-        </Form.Item>
-        <ConfigProvider locale={koKR}>
-          <Form.Item
-            name="meetAt"
-            rules={[{ required: true, message: "모임 날짜 선택해주세요!" }]} // 필수 입력 필드
-          >
-            <DatePicker style={{ width: "100%" }} />
-          </Form.Item>
-        </ConfigProvider>
-        <Form.Item
-          name="location"
-          rules={[{ required: true, message: "모임 장소 입력를 입력해주세요!" }]} // 필수 입력 필드
-        >
-          <Input placeholder="모임 장소 입력" />
-        </Form.Item>
-        <Form.Item
-          name="dressCode"
-          rules={[{ required: true, message: "모임 드레스코드를 입력해주세요!" }]} // 필수 입력 필드
-        >
-          <Input placeholder="모임 드레스코드 입력" />
-        </Form.Item>
-        <Form.Item
-          name="additionalInfo"
-          rules={[{ required: true, message: "모임 기타 안내 사항 입력해주세요!" }]} // 필수 입력 필드
-        >
-          <Input placeholder="모임 기타 안내 사항 입력" />
-        </Form.Item>
-        <Form.Item
-          name="intro"
-          rules={[{ required: true, message: "이름을 입력해주세요!" }]} // 필수 입력 필드
-        >
-          <Input placeholder="초대장 메시지 입력" />
-        </Form.Item>
-
-        <Form.Item label={null}>
-          {!fixButton ? (
-            <Button type="primary" htmlType="submit">
-              초대장 보내기 버튼
-            </Button>
-          ) : (
-            <>
-              <Button
-                type="primary"
-                onClick={() => {
-                  router.back();
-                }}
+            <FormGroup title="이벤트 제목" size={`large`} required={true}>
+              <Form.Item
+                name="name"
+                rules={[{ required: true, message: "모임 제목을 입력해주세요!" }]} // 필수 입력 필드
               >
-                취소
-              </Button>
-              <Button type="primary" htmlType="submit">
-                수정완료
-              </Button>
-            </>
-          )}
-        </Form.Item>
-      </Form>
-    </div>
+                <Input placeholder="" />
+              </Form.Item>
+            </FormGroup>
+            <FormGroup
+              title={
+                <>
+                  <Icon icon="calendar" />
+                  날짜와 시간
+                </>
+              }
+            >
+              <ConfigProvider locale={koKR}>
+                <Form.Item
+                  name="meetAt"
+                  rules={[{ required: true, message: "모임 날짜 선택해주세요!" }]} // 필수 입력 필드
+                >
+                  <DatePicker style={{ width: "100%" }} placeholder="" />
+                </Form.Item>
+              </ConfigProvider>
+            </FormGroup>
+            <FormGroup
+              title={
+                <>
+                  <Icon icon="location" />
+                  장소
+                </>
+              }
+            >
+              <Form.Item
+                name="location"
+                rules={[{ required: true, message: "모임 장소 입력를 입력해주세요!" }]} // 필수 입력 필드
+              >
+                <Input placeholder="" />
+              </Form.Item>
+            </FormGroup>
+            <FormGroup
+              title={
+                <>
+                  <Icon icon="spark" />
+                  드레스 코드
+                </>
+              }
+            >
+              <Form.Item
+                name="dressCode"
+                rules={[{ required: true, message: "모임 드레스코드를 입력해주세요!" }]} // 필수 입력 필드
+              >
+                <Input placeholder="" />
+              </Form.Item>
+            </FormGroup>
+            <FormGroup title="기타입력 사항">
+              <Form.Item
+                name="additionalInfo"
+                rules={[{ required: true, message: "모임 기타 안내 사항 입력해주세요!" }]} // 필수 입력 필드
+              >
+                <Input placeholder="" />
+              </Form.Item>
+            </FormGroup>
+            <FormGroup title="초대장" direction="vertical">
+              <Form.Item
+                name="intro"
+                rules={[{ required: true, message: "초대 메세지를 입력해주세요!" }]} // 필수 입력 필드
+              >
+                <Input.TextArea placeholder="마음을 담아 초대 메세지를 작성해 보세요." />
+              </Form.Item>
+            </FormGroup>
+            <Form.Item label={null}>
+              <ButtonBox>
+                {fixButton ? (
+                  <Button
+                    block={true}
+                    size="large"
+                    color="primary"
+                    onClick={() => {}}
+                    htmlType="submit"
+                  >
+                    작성 완료
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      block={true}
+                      size="large"
+                      color="info"
+                      onClick={() => {
+                        router.back();
+                      }}
+                    >
+                      취소
+                    </Button>
+                    <Button block={true} size="large" color="primary" htmlType="submit">
+                      수정완료
+                    </Button>
+                  </>
+                )}
+              </ButtonBox>
+            </Form.Item>
+          </Form>
+        </ContentBox>
+      </Main>
+    </Layout>
   );
 }
