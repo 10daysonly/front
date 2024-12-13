@@ -26,7 +26,7 @@ const InviteCard = () => {
           <div className="img-edit">
             <Image src={dummyImage.src} />
             <Button color="primary" size="small" icon={<Icon icon="edit" />} iconPosition="start">
-              Edit
+              수정
             </Button>
           </div>
           <FormGroup title="이벤트 제목" size={`large`} required={true}>
@@ -69,6 +69,9 @@ const InviteCard = () => {
             <Textarea placeholder="마음을 담아 초대 메세지를 작성해 보세요." />
           </FormGroup>
           <ButtonBox>
+            <Button block={true} size="large" color="info" onClick={() => {}}>
+              취소
+            </Button>
             <Button block={true} size="large" color="primary" onClick={() => {}}>
               작성 완료
             </Button>

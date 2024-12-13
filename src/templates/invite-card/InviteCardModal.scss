@@ -21,10 +21,14 @@
   flex: 1;
 }
 
+.invite-card-modal .search-header .search-box input {
+  padding-left: 34px;
+}
+
 .invite-card-modal .search-header .search-box .icon {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 9px;
+  left: 12px;
   pointer-events: none;
 }
 
