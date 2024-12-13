@@ -11,7 +11,7 @@ export default function NavigationButton() {
 
   const fixCard = () => {
     dispatch(setFixButton(true));
-    router.push("/invite-card");
+    router.push("/invite/upsert");
   };
   return (
     <div style={{ display: "grid", gap: "10px" }}>

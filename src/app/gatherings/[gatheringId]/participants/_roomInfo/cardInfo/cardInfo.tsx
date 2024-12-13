@@ -1,10 +1,16 @@
 "use client";
 
+import { useAppDispatch, useAppSelector } from "@/app/store";
+import { Image } from "antd";
+
 export default function CardInfo() {
+  const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
   return (
     <div style={{ display: "grid", gap: "10px" }}>
       <div style={{ display: "flex" }}>
         <div>
+          <Image alt="card image" src={inviteCard.image} width={300} height={200} />
+          <br />
           <small>Date</small>
           <br />
           <p>12월22일 일요일ㅤㅤ</p>
@@ -17,18 +23,18 @@ export default function CardInfo() {
       </div>
       <div>
         <small>Location</small>
-        <p>No location set(장소 미정)</p>
+        <p>{inviteCard.location}</p>
       </div>
       <div>
         <small>Dress code</small>
-        <p>크리스마스 트리</p>
+        <p>{inviteCard.dressCode}</p>
       </div>
       <div>
         <small>Additional Info</small>
-        <p>선물교환식은 현장에서 랜덤으로 교환하세요!</p>
+        <p>{inviteCard.additionalInfo}</p>
       </div>
       <hr />
-      <text>test</text>
+      <text>{inviteCard.intro}</text>
       <hr />
     </div>
   );

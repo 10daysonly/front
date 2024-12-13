@@ -2,24 +2,33 @@
 
 import { Button, Form, Input, message } from "antd";
 import "./auth-email.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
-import { useAppSelector } from "@/app/store";
+import { useAppDispatch, useAppSelector } from "@/app/store";
+import { setInviteCard } from "@/app/slice";
+import { useEffect, useState } from "react";
+import { postGatherings } from "../thunk";
 
 export default function Home() {
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
+  const [beforePreview, setBeforePreview] = useState(
+    searchParams.get("d") == "preview" ? true : false
+  );
 
+  // submit
   const onFinish = async (values: any) => {
     const allOfInfo = { ...inviteCard, hostName: values.name, hostEmail: values.hostEmail };
+    dispatch(setInviteCard(allOfInfo)); // 리덕스로 상태 관리
     console.log(allOfInfo);
 
-    const response = await axios.post("/api/sendEmail", allOfInfo, {
-      headers: {
-        "Content-Type": "application/json", // 헤더 설정
-      },
-    });
-    console.log(response);
+    const fetchAction = await dispatch(postGatherings());
+
+    if (postGatherings.rejected.match(fetchAction)) {
+      console.log("오류");
+    }
     message.warning("메일을 재전송 하였습니다");
 
     message.warning("메일을 전송 하였습니다");
@@ -33,14 +42,19 @@ export default function Home() {
 
   return (
     <div>
-      <Button
-        type="default"
-        onClick={() => {
-          router.push("/invite/upsert");
-        }}
-      >
-        뒤로가기
-      </Button>
+      {beforePreview == false ? (
+        <Button
+          type="default"
+          onClick={() => {
+            router.push("/invite/upsert");
+          }}
+        >
+          뒤로가기
+        </Button>
+      ) : (
+        ""
+      )}
+
       <Form
         name="basic"
         labelCol={{ span: 8 }}

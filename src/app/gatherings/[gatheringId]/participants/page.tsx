@@ -1,6 +1,6 @@
 "use client";
 import { Button, Card, ConfigProvider, DatePicker, Form, Image, Input } from "antd";
-import jwt from "jsonwebtoken";
+
 import React, { useEffect, useState } from "react";
 import CardInfo from "./_roomInfo/cardInfo/cardInfo";
 import Attendee from "./_roomInfo/attendee/attendee";
@@ -8,31 +8,52 @@ import RandomDraw from "./_roomInfo/randomDraw/randomDraw";
 import GuestbookForm from "./_roomInfo/guestbookForm/guestbookForm";
 import NavigationButton from "./_roomInfo/navigationButton/navigationButton";
 import { useParams, useSearchParams } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/app/store";
+import { setInviteCard } from "@/app/slice";
+import axios from "axios";
+import { getGatherings } from "./thunks";
+import { decodeToken } from "@/app/utils/token";
 
 export default function Home() {
   const { gatheringId } = useParams();
-
-  // 클라이언트 사이드에서만 실행되도록 상태 관리
-  const [decodedToken, setDecodedToken] = useState(null);
+  const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
   const searchParams = useSearchParams();
+  const dispatch = useAppDispatch();
   const token = searchParams.get("token"); // 쿼리스트링에서 'token'의 값을 가져옴
 
   useEffect(() => {
-    if (token) {
-      const decoded: any = decodeToken(token as string);
-      setDecodedToken(decoded);
-    }
-  }, [token]); // gatheringId가 변경될 때만 실행
+    getToken();
+  }, []);
 
-  if (!decodedToken) {
-    // 에러 페이지로 이동
-    return <div>Loading...</div>;
-  }
+  // 토큰값 = 이메일  정보에 담기
+  useEffect(() => {}, [token]);
+
+  const getToken = async () => {
+    // decoded : {sub: string;name: string;}
+    let decoded: any = decodeToken(token as string);
+
+    // 타입 검증 및 안전한 접근
+    //로그인
+    const userInfo: { sub: string; name: string } = {
+      sub: decoded.sub as string,
+      name: decoded.name as string,
+    };
+    localStorage.setItem("user", JSON.stringify(userInfo));
+
+    // 방id로 정보 조회
+    const fetchAction = await dispatch(getGatherings(gatheringId));
+    if (getGatherings.rejected.match(fetchAction)) {
+      console.log("오류");
+    }
+  };
+
+  // if (!inviteCard.hostEmail) {
+  //   // 에러 페이지로 이동
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>
-      <div>로고</div>
-      <Image alt="card image" src={""} width={300} height={200} />
       <CardInfo />
       <Attendee />
       <RandomDraw />
@@ -40,14 +61,4 @@ export default function Home() {
       <NavigationButton />
     </div>
   );
-}
-
-export function decodeToken(token: string) {
-  try {
-    const decoded = jwt.decode(token);
-    return decoded;
-  } catch (error) {
-    console.error("Failed to decode token", error);
-    return null;
-  }
 }

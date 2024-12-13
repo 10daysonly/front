@@ -30,17 +30,34 @@ export default function Home() {
 
   const onFinish = (values: any) => {
     console.log("폼 데이터:", values); // 제출된 데이터 출력
+    dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
 
+    // 새로 생성일 경우
     if (!fixButton) {
-      dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
       // 쿠키나 세션 등으로 제어하기
-      if (true) {
+
+      const storedData = localStorage.getItem("user");
+      // 로그인 이력이 없을 경우
+      if (!storedData) {
         router.push("/invite/auth/sending");
       } else {
+        // 이전에 로그인 했을 경우
+
+        const allOfInfo = {
+          ...inviteCard,
+          hostName: JSON.parse(storedData).name,
+          hostEmail: JSON.parse(storedData).sub,
+        };
+        dispatch(setInviteCard(allOfInfo)); // 리덕스로 상태 관리
+
+        // !! 바로 방생성하는거 추가해야함
         router.push("/share-links");
       }
       message.success("폼이 성공적으로 제출되었습니다!");
     } else {
+      // 수정일 경우
+      // !! 업데이트 웹서비스 추가해야함
+
       router.back();
       //경로로하면 찾아갈수있을지.. 데이터만 웹서비스에 담아주고 백하는게 맞는거같기도하고..
       // router.push("/invite-room/te");

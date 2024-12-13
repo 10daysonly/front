@@ -2,7 +2,8 @@ import dayjs, { Dayjs } from "dayjs";
 
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IInviteCard } from "./invite/upsert/types";
+import { IInviteCard } from "./types";
+import { getGatherings } from "./gatherings/[gatheringId]/participants/thunks";
 
 export interface IInviteCardSlice {
   inviteCard: IInviteCard;
@@ -10,6 +11,12 @@ export interface IInviteCardSlice {
 
 const initialState: IInviteCardSlice = {
   inviteCard: {
+    // host: {
+    //   name: "",
+    //   email: "",
+    //   paritipantId: "",
+    //   imageUrl: "",
+    // },
     hostEmail: "",
     hostName: "",
     name: "",
@@ -34,6 +41,29 @@ export const inviteCardSlice = createSlice({
       // 'meetAt' 값이 이미 ISO 형식의 문자열이면 그대로 두기
       state.inviteCard = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getGatherings.pending, (state) => {})
+      .addCase(getGatherings.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.inviteCard = {
+          ...state.inviteCard,
+          hostEmail: action.payload.host,
+          hostName: action.payload.host,
+          image: action.payload.imageUrl,
+          meetAt: action.payload.meetAt,
+          // host: { email: action.payload.host },
+          name: action.payload.name,
+          location: action.payload.location,
+          dressCode: action.payload.dressCode,
+          additionalInfo: action.payload.additionalInfo,
+          intro: action.payload.intro,
+        };
+      })
+      .addCase(getGatherings.rejected, (state, action) => {
+        console.log(action.payload);
+      });
   },
 });
 

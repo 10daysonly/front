@@ -1,9 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-  const URL = process.env.API_URL;
-  const Path = "test";
+export async function GET(request: NextRequest) {
+  const URL = process.env.NEXT_PUBLIC_API_URL;
 
+  const requestURL = request.nextUrl;
+  const Path = `/api/v1/gatherings/${requestURL.searchParams.get("gatheringId")}`;
+
+  console.log(`${URL + Path}`);
   try {
     const response = await fetch(`${URL + Path}`, {
       method: "GET",
