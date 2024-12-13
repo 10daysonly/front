@@ -4,6 +4,7 @@ import NextImage from "next/image";
 import "./Avatar.scss";
 
 interface Props {
+  shape?: "circle" | "rect" | "star";
   src?: string;
   width?: number;
   height?: number;
@@ -11,9 +12,13 @@ interface Props {
   color?: "default" | "reverse";
 }
 
-const Avatar = ({ src, size, color, width, height }: Props) => {
+const Avatar = ({ shape, src, size, color, width, height }: Props) => {
   return (
-    <div className={`ui-avatar ${size ? `size-${size}` : ""} ${color ? `color-${color}` : " "}`}>
+    <div
+      className={`ui-avatar ${shape ? shape : ""} ${size ? `size-${size}` : ""} ${
+        color ? `color-${color}` : " "
+      }`}
+    >
       {src && (
         <NextImage
           src={src}
