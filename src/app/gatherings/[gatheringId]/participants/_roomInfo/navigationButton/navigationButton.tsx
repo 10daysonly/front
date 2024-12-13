@@ -16,6 +16,7 @@ export default function NavigationButton() {
   };
 
   const newCard = () => {
+    dispatch(setFixButton(false));
     dispatch(resetInviteCard());
     router.push("/invite/upsert");
   };
