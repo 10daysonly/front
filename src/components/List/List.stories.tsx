@@ -6,6 +6,7 @@ import List from "./";
 import Image from "@/components/Image";
 import Avatar from "@/components/Avatar";
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 
 const meta = {
   title: "Components/List",
@@ -42,6 +43,23 @@ export const ExampleMeta: Story = {
           title={item.name}
           description={item.info}
         />
+      </List.Item>
+    ),
+  },
+};
+
+export const ExampleChat: Story = {
+  args: {
+    dataSource: dummyData,
+    renderItem: (item) => (
+      <List.Item
+        actions={
+          <>
+            <span>20:10</span> <Icon icon="x" />
+          </>
+        }
+      >
+        <List.Item.Meta avatar={<Avatar />} title={item.name} description={item.info} />
       </List.Item>
     ),
   },
