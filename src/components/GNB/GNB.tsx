@@ -4,15 +4,15 @@ import "./GNB.scss";
 
 import Image from "@/components/Image";
 
-import editIcon from "./imgs/icon-edit.svg";
-import shareIcon from "./imgs/icon-share.svg";
-import inviteIcon from "./imgs/icon-invite.svg";
-import deleteIcon from "./imgs/icon-delete.svg";
+import editIcon from "./imgs/icon-gnb-edit.svg";
+import shareIcon from "./imgs/icon-gnb-share.svg";
+import inviteIcon from "./imgs/icon-gnb-invite.svg";
+import deleteIcon from "./imgs/icon-gnb-delete.svg";
 
-import editIconActive from "./imgs/icon-edit-active.svg";
-import shareIconActive from "./imgs/icon-share-active.svg";
-import inviteIconActive from "./imgs/icon-invite-active.svg";
-import deleteIconActive from "./imgs/icon-delete-active.svg";
+import editIconActive from "./imgs/icon-gnb-edit-active.svg";
+import shareIconActive from "./imgs/icon-gnb-share-active.svg";
+import inviteIconActive from "./imgs/icon-gnb-invite-active.svg";
+import deleteIconActive from "./imgs/icon-gnb-delete-active.svg";
 
 const gnbIcon = {
   edit: editIcon,
