@@ -7,6 +7,22 @@
   border-radius: 50%;
 }
 
+.ui-avatar.circle {
+  background: #d9d9d9;
+  border-radius: 50%;
+}
+
+.ui-avatar.rect {
+  background: #d9d9d9;
+  border-radius: 9px;
+}
+
+.ui-avatar.star {
+  background: url("./imgs/avatar-star.svg") center center no-repeat;
+
+  border-radius: 9px;
+}
+
 .ui-avatar.size-large {
   width: 36px;
   height: 36px;

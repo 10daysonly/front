@@ -8,6 +8,18 @@
   border-radius: 8px;
   font-size: 14px;
   color: var(--text);
-  font-weight: bold;
+  font-weight: thin;
   box-sizing: border-box;
+  font-weight: normal;
+}
+
+.ui-textarea textarea::placeholder {
+  color: var(--placeholder);
+  font-weight: thin;
+}
+
+.ui-textarea textarea:focus {
+  border: 1px solid rgba(208, 211, 220, 0.5);
+  color: var(--focus-color);
+  outline: none;
 }

@@ -9,6 +9,7 @@ import Avatar from "@/components/Avatar";
 import Typography from "@/components/Typography";
 import Icon from "@/components/Icon";
 import Text from "@/components/Text";
+import Dropdown from "@/components/Dropdown";
 
 const GuestListModal = () => {
   return (
@@ -33,12 +34,14 @@ const GuestListModal = () => {
                   <List.Item
                     actions={
                       <>
-                        <Button color="primary" size="small">
-                          참석
-                        </Button>
-                        <Button color="info" size="small">
-                          불참
-                        </Button>
+                        <Dropdown
+                          value="a"
+                          options={[
+                            { text: "참석예정", value: "a" },
+                            { text: "참석불가", value: "b" },
+                          ]}
+                          onChange={() => {}}
+                        />
                       </>
                     }
                   >

@@ -29,6 +29,18 @@ export const WithImage: Story = {
   },
 };
 
+export const ShapeRect: Story = {
+  args: {
+    shape: "rect",
+  },
+};
+
+export const ShapeStar: Story = {
+  args: {
+    shape: "star",
+  },
+};
+
 export const SizeLarge: Story = {
   args: {
     size: "large",

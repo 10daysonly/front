@@ -36,21 +36,36 @@
 .btn.color-info-reverse {
   background: #6d7383;
   border-color: #6d7383;
-  color: var(--text-reverse);
+  color: #9ca2ae;
 }
 
 .btn.color-active {
   background: linear-gradient(#e1e6fe, #f1d7ff);
-  border-color: #ffffff;
+  border: none;
   color: var(--text-reverse);
 }
 
 .btn.size-small {
   padding: 0 10px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   height: 28px;
   min-width: 60px;
-  border-radius: 8px;
+  border-radius: 4px;
+}
+
+.btn.pill {
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 24px;
+}
+
+.btn.size-small.pill {
+  border-radius: 14px;
+}
+
+.btn.size-large.pill {
+  border-radius: 30px;
 }
 
 .btn.size-large {
@@ -58,6 +73,7 @@
   padding: 10px;
   font-size: 18px;
   border-radius: 20px;
+  font-weight: 700;
 }
 
 .btn .icon {

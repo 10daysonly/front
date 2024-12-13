@@ -63,3 +63,7 @@ export const TimeIcon: Story = {
 export const ShareIcon: Story = {
   args: { icon: "share" },
 };
+
+export const XIcon: Story = {
+  args: { icon: "x" },
+};
