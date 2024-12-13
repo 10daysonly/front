@@ -9,6 +9,7 @@
   height: 50px;
   line-height: 50px;
   font-size: 16px;
+  font-weight: 400;
   text-align: center;
   color: var(--text-reverse);
   padding-bottom: 24px;
@@ -17,6 +18,7 @@
 .tabs-list .tabs-list-item.active {
   position: relative;
   color: var(--primary);
+  font-weight: 500;
 }
 
 .tabs-list .tabs-list-item.active:after {
