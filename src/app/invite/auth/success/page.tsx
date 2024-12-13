@@ -1,10 +1,21 @@
 "use client";
 
-import { Button, Form, Input, message } from "antd";
+// import { Button, Form, Input, message } from "antd";
+import { Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useState } from "react";
 import { useAppSelector } from "@/app/store";
+
+import Layout from "@/components/Layout";
+import Main from "@/components/Main";
+
+import MsgInfo from "@/components/MsgInfo";
+import Button from "@/components/Button";
+import ButtonBox from "@/components/ButtonBox";
+
+import "./AuthSuccess.scss";
+import "./auth-success.module.css"; // custom css
 
 export default function Home() {
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
@@ -27,14 +38,29 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <div>이미지</div>
-      <p>입력하신 이메일로 메일을 보냈어요. </p>
-      <p>메일 내 링크 확인 후 친구들을 이벤트에 초대해 보세요!</p>
-      <br />
-      <p>
-        메일을 받지 못하셨나요?<Button onClick={onClick}>다시 보내기</Button>
-      </p>
-    </div>
+    <Layout page="auth-success">
+      <Main>
+        <MsgInfo
+          icon="info"
+          title={
+            <>
+              입력하신 이메일로 <br /> 메일을 보냈어요
+            </>
+          }
+          subtitle={
+            <>
+              메일내 링크 확인 후 <br />
+              친구들을 이벤트에 초대해보세요!
+            </>
+          }
+        />
+        <ButtonBox>
+          <p className="info-text">메일을 받지 못하셨나요?</p>
+          <Button block={true} size="large" color="primary" onClick={onClick}>
+            다시 보내기
+          </Button>
+        </ButtonBox>
+      </Main>
+    </Layout>
   );
 }
