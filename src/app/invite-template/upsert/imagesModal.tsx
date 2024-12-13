@@ -1,23 +1,39 @@
 "use client";
 
-import {
-  Button,
-  Card,
-  Col,
-  Image,
-  Input,
-  message,
-  Modal,
-  Row,
-  Tabs,
-  TabsProps,
-  Upload,
-} from "antd";
+import React from "react";
+
+import { message, Upload } from "antd";
+// import {
+//   Button,
+//   Card,
+//   Col,
+//   Image,
+//   Input,
+//   message,
+//   Modal,
+//   Row,
+//   Tabs,
+//   TabsProps,
+//   Upload,
+// } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { setInviteCard } from "./invite-cardSlice";
 import { UploadOutlined } from "@ant-design/icons";
+
+import "./InviteCardModal.scss";
+
+import Modal from "@/components/Modal";
+import Input from "@/components/Input";
+import Icon from "@/components/Icon";
+import Button from "@/components/Button";
+import ButtonBox from "@/components/ButtonBox";
+import Tabs from "@/components/Tabs";
+import List from "@/components/List";
+import Image from "@/components/Image";
+
+import dummyImage2 from "@/components/Image/imgs/dummyImage2.png";
 
 interface ModalComponentProps {
   visible: boolean;
@@ -94,7 +110,7 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
     onClose();
   };
 
-  const items: TabsProps["items"] = [
+  const items = [
     {
       key: "1",
       label: "일러스트",
@@ -107,32 +123,50 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
     },
     {
       key: "3",
-      label: "짤",
+      label: "GIFS",
       children: (
-        <Row gutter={16}>
-          {images.map((src, index) => (
-            <img alt={`image-${index}`} src={src} width={200} height={200} onClick={onClickImage} />
-          ))}
-        </Row>
+        <div className="image-list-box">
+          <List
+            grid={true}
+            dataSource={images}
+            renderItem={(item) => {
+              return <Image src={item.src} width={item.width} height={item.height} />;
+            }}
+          ></List>
+        </div>
       ),
     },
   ];
 
   return (
-    <>
-      <Modal title="카드 이미지 등록" open={visible} onCancel={onClose} footer={null}>
-        <Input
-          placeholder="검색"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <Upload onChange={imageUpload}>
-          <Button icon={<UploadOutlined />}>Click to Upload</Button>
-        </Upload>
-        <Tabs activeKey={activeKey} onChange={handleTabChange} items={items} />
-      </Modal>
-    </>
+    <Modal open={visible} onClose={onClose}>
+      <div className="invite-card-modal">
+        <div className={`search-header`}>
+          <Button color="default">
+            <Icon icon="back" />
+          </Button>
+          <div className={`search-box`}>
+            <Input
+              variant="normal"
+              placeholder="search"
+              size="small"
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+            />
+            <Icon icon="search" />
+          </div>
+        </div>
+        <Tabs items={items} activeKey={activeKey} onChange={handleTabChange} />
+        <ButtonBox>
+          <Upload onChange={imageUpload}>
+            <Button block={true} color="primary" icon={<Icon icon="camera" />} iconPosition="start">
+              사진 업로드
+            </Button>
+          </Upload>
+        </ButtonBox>
+      </div>
+    </Modal>
   );
 }

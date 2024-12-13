@@ -4,6 +4,7 @@ import "./Button.scss";
 
 interface Props {
   children: React.ReactNode;
+  htmlType?: "button" | "submit";
   disabled?: boolean;
   variant?: "solid";
   color?: "default" | "primary" | "secondary" | "info" | "info-reverse" | "active";
@@ -16,6 +17,7 @@ interface Props {
 
 const Button = ({
   children,
+  htmlType = "button",
   disabled,
   variant = "solid",
   color = "default",
@@ -27,7 +29,7 @@ const Button = ({
 }: Props) => {
   return (
     <button
-      type="button"
+      type={htmlType}
       className={`btn variant-${variant} color-${color} size-${size} ${block ? `block` : ""}`}
       {...(onClick && { onClick })}
       {...(disabled && { disabled })}
