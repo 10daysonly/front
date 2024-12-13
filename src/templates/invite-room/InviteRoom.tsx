@@ -13,7 +13,7 @@ import Icon from "@/components/Icon";
 import DataInfo from "@/components/DataInfo";
 import Input from "@/components/Input";
 import Avatar from "@/components/Avatar";
-import ChatBubble from "@/components/ChatBubble";
+import List from "@/components/List";
 import Box from "@/components/Box";
 import Text from "@/components/Text";
 
@@ -55,10 +55,10 @@ const InviteRoom = () => {
             <Typography>참석하는 사람</Typography>
             <div className="guestbook-list-content">
               <div className="guestbook-list">
-                <Avatar size="large" />
-                <Avatar size="large" />
-                <Avatar size="large" />
-                <Avatar size="large" />
+                <Avatar size="large" shape="circle" />
+                <Avatar size="large" shape="rect" />
+                <Avatar size="large" shape="star" />
+                <Avatar size="large" shape="circle" />
                 <div className="ellipsis">...</div>
               </div>
               <span className="count">25 명</span>
@@ -85,7 +85,24 @@ const InviteRoom = () => {
               <div className="random-draw-result">
                 <Box>결과값</Box>
               </div>
-              <Button color={`primary`}>시작</Button>
+              <Button color={`primary`} pill={true}>
+                시작
+              </Button>
+            </Box>
+          </ContentBox>
+        </div>
+
+        <div className="random-draw">
+          <ContentBox>
+            <Typography>랜덤 뽑기</Typography>
+            <Box line={true}>
+              <Typography>나의 랜덤 뽑기 결과는?</Typography>
+              <div className="random-draw-result">
+                <Box>결과값</Box>
+              </div>
+              <Button color={`primary`} pill={true}>
+                결과 확인
+              </Button>
             </Box>
           </ContentBox>
         </div>
@@ -98,18 +115,39 @@ const InviteRoom = () => {
                 <Button>등록</Button>
               </div>
               <div className="guestbook-list">
-                <ChatBubble avatar={<Avatar color="reverse" />} time="12:40">
-                  Ant Design, a design language for background applications, is refined by Ant UED
-                  Team
-                </ChatBubble>
-                <ChatBubble avatar={<Avatar color="reverse" />} time="12:40" direction="right">
-                  Ant Design, a design language for background applications, is refined by Ant UED
-                  Team
-                </ChatBubble>
-                <ChatBubble avatar={<Avatar color="reverse" />} time="12:40">
-                  Ant Design, a design language for background applications, is refined by Ant UED
-                  Team
-                </ChatBubble>
+                <List
+                  dataSource={[
+                    {
+                      name: "이민지",
+                      description:
+                        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. A dolor et praesentium consequatur velit quam. Animi ut ipsam consequatur dolores molestiae ducimus et esse itaque. Deserunt, magni nesciunt? Tempore, eum.",
+                    },
+                    {
+                      name: "이민지",
+                      description:
+                        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. A dolor et praesentium consequatur velit quam. Animi ut ipsam consequatur dolores molestiae ducimus et esse itaque. Deserunt, magni nesciunt? Tempore, eum.",
+                    },
+                  ]}
+                  renderItem={(item) => {
+                    return (
+                      <List.Item>
+                        <List.Item
+                          actions={
+                            <>
+                              <span>20:10</span> <Icon icon="x" />
+                            </>
+                          }
+                        >
+                          <List.Item.Meta
+                            avatar={<Avatar />}
+                            title={item.name}
+                            description={item.description}
+                          />
+                        </List.Item>
+                      </List.Item>
+                    );
+                  }}
+                />
               </div>
             </Box>
           </ContentBox>
