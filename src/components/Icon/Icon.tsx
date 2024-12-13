@@ -16,6 +16,7 @@ import spark from "./imgs/icon-spark.svg";
 import sparkLarge from "./imgs/icon-spark-large.svg";
 import timeLarge from "./imgs/icon-time-large.svg";
 import share from "./imgs/icon-share.svg";
+import x from "./imgs/icon-x.svg";
 
 interface IconMap {
   [key: string]: { src: string; width: number; height: number };
@@ -36,6 +37,7 @@ const iconMap: IconMap = {
   sparkLarge,
   timeLarge,
   share,
+  x,
 };
 
 interface Props {

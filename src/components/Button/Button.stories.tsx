@@ -95,6 +95,32 @@ export const SizeSmall: Story = {
   },
 };
 
+export const Pill: Story = {
+  args: {
+    children: "large",
+    color: "primary",
+    pill: true,
+  },
+};
+
+export const PillSamll: Story = {
+  args: {
+    children: "small pill",
+    color: "primary",
+    size: "small",
+    pill: true,
+  },
+};
+
+export const PillLarge: Story = {
+  args: {
+    children: "large pill",
+    color: "primary",
+    size: "large",
+    pill: true,
+  },
+};
+
 export const IconStart: Story = {
   args: {
     children: "btn",

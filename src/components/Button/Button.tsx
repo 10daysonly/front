@@ -7,6 +7,7 @@ interface Props {
   htmlType?: "button" | "submit";
   disabled?: boolean;
   variant?: "solid";
+  pill?: boolean;
   color?: "default" | "primary" | "secondary" | "info" | "info-reverse" | "active";
   size?: "default" | "large" | "small";
   block?: boolean;
@@ -20,6 +21,7 @@ const Button = ({
   htmlType = "button",
   disabled,
   variant = "solid",
+  pill,
   color = "default",
   size = "default",
   block,
@@ -30,7 +32,9 @@ const Button = ({
   return (
     <button
       type={htmlType}
-      className={`btn variant-${variant} color-${color} size-${size} ${block ? `block` : ""}`}
+      className={`btn variant-${variant} ${pill ? "pill" : ""} color-${color} size-${size} ${
+        block ? `block` : ""
+      }`}
       {...(onClick && { onClick })}
       {...(disabled && { disabled })}
     >

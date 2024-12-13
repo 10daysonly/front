@@ -6,13 +6,20 @@ import "./LogoHeader.scss";
 
 import logo from "../imgs/logo.svg";
 
-interface Props {}
+interface Props {
+  onClick?: Function;
+}
 
-const LogoHeader = ({}) => {
+const LogoHeader = ({ onClick }: Props) => {
   return (
     <header className={`header logo-header`}>
       <h1 className={`logo`}>
-        <a href="#">
+        <a
+          href="#"
+          onClick={() => {
+            onClick?.();
+          }}
+        >
           <NextImage src={logo.src} width={logo.width} height={logo.height} alt="" />
           <span className={`text`}>Ringley</span>
         </a>

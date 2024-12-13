@@ -29,9 +29,17 @@
 }
 
 .ui-list .list-item .list-item-actions {
+  display: flex;
+  flex-direction: row;
   justify-self: flex-end;
   align-self: center;
+  font-size: 10px;
+  color: #9ca2ae;
   text-align: right;
+}
+
+.ui-list .list-item .list-item-actions span + span {
+  margin-left: 4px;
 }
 
 .list-item-meta .list-item-meta-avatar {
@@ -58,6 +66,7 @@
 
 .list-item-meta .list-item-meta-content .list-item-meta-title.main-style {
   font-size: 18px;
+  font-weight: 500;
 }
 
 .item-meta .item-meta-content .list-item-meta-description {
@@ -74,7 +83,7 @@
 
 .ui-list.grid li.list-li {
   list-style: none;
-  margin-top: 12px;
+  margin-top: 0;
   flex: 0 0 calc(50% - 8px);
 }
 

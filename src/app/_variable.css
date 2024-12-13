@@ -1,5 +1,6 @@
 :root {
-  --bg: #100f1c;
+  --bg: #141434;
+  --bg-image: url("./imgs/bg-blur.png");
   --primary: #4a44f2;
   --text: #ffffff;
   --text-reverse: black;
