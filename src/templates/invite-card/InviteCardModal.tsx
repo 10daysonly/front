@@ -26,10 +26,10 @@ const InviateCardModal = () => {
         <div className="invite-card-modal">
           <div className={`search-header`}>
             <Button color="default">
-              <Icon icon="back" />
+              <Icon icon="backReverse" />
             </Button>
             <div className={`search-box`}>
-              <Input variant="normal" placeholder="search" size="small" />
+              <Input variant="normal" placeholder="키워드를 검색해보세요." size="small" />
               <Icon icon="search" />
             </div>
           </div>
