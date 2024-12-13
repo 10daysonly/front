@@ -54,6 +54,20 @@
   padding-right: 8px;
 }
 
+.ui-chat-bubble .chat-bubble-box .chat-bubble-actions {
+  align-self: flex-end;
+  vertical-align: text-bottom;
+  cursor: pointer;
+}
+
+.ui-chat-bubble .chat-bubble-box .chat-bubble-actions .icon {
+  vertical-align: text-bottom;
+  line-height: 0;
+  display: inline-block;
+  width: 20px;
+  text-align: right;
+}
+
 .ui-chat-bubble + .ui-chat-bubble {
   margin-top: 24px;
 }
