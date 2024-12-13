@@ -1,41 +1,37 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { Image } from "antd";
+// import { Image } from "antd";
+
+import Typography from "@/components/Typography";
+import Icon from "@/components/Icon";
+import DataInfo from "@/components/DataInfo";
+import Box from "@/components/Box";
+import Image from "@/components/Image";
 
 export default function CardInfo() {
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
+
   return (
-    <div style={{ display: "grid", gap: "10px" }}>
-      <div style={{ display: "flex" }}>
-        <div>
-          <Image alt="card image" src={inviteCard.image} width={300} height={200} />
-          <br />
-          <small>Date</small>
-          <br />
-          <p>12월22일 일요일ㅤㅤ</p>
-        </div>
-        <div>
-          <small>Time</small>
-          <br />
-          <p>오후 7시</p>
-        </div>
+    <div className={`invite-info`}>
+      <div className={`invite-room-image`}>
+        <Image alt="card image" src={inviteCard.image} width={300} height={200} />
       </div>
-      <div>
-        <small>Location</small>
-        <p>{inviteCard.location}</p>
-      </div>
-      <div>
-        <small>Dress code</small>
-        <p>{inviteCard.dressCode}</p>
-      </div>
-      <div>
-        <small>Additional Info</small>
-        <p>{inviteCard.additionalInfo}</p>
-      </div>
-      <hr />
-      <text>{inviteCard.intro}</text>
-      <hr />
+      <Typography level={1}>{inviteCard.name}</Typography>
+      <DataInfo icon={<Icon icon="calendarLarge" />} title="Date">
+        12 월 22일 일요일
+      </DataInfo>
+      <DataInfo icon={<Icon icon="timeLarge" />} title="Time">
+        오후 7시
+      </DataInfo>
+      <DataInfo icon={<Icon icon="locationLarge" />} title="Location">
+        {inviteCard.location}
+      </DataInfo>
+      <DataInfo icon={<Icon icon="sparkLarge" />} title="Dress code">
+        {inviteCard.dressCode}
+      </DataInfo>
+      <DataInfo title="Additional info">{inviteCard.additionalInfo}</DataInfo>
+      <Box>{inviteCard.intro}</Box>
     </div>
   );
 }
