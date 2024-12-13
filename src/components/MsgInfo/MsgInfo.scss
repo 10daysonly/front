@@ -2,7 +2,7 @@
   text-align: center;
   display: flex;
   color: var(--text);
-
+  line-height: 1.4;
   padding: 24px 32px;
   box-sizing: border-box;
   width: 100%;
@@ -12,18 +12,20 @@
 }
 .ui-msg-info .msg-info-icon {
   display: inline-block;
-  margin: 0 auto 24px;
+  margin: 0 auto 35px;
 }
 
 .ui-msg-info .msg-info-title {
-  font-size: 20px;
-  background: linear-gradient(0deg, #e1e6fe, #f1d7ff, #319197);
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #e1e6fe 0%, #f1d7ff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .ui-msg-info .msg-info-subtitle {
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
 }
 .ui-msg-info .msg-info-title + .msg-info-subtitle {
   margin-top: 12px;
