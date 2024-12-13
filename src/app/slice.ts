@@ -2,7 +2,7 @@ import dayjs, { Dayjs } from "dayjs";
 
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IInviteCard } from "./types";
+import { IInviteCard } from "./invite/upsert/types";
 
 export interface IInviteCardSlice {
   inviteCard: IInviteCard;
@@ -18,7 +18,7 @@ const initialState: IInviteCardSlice = {
     dressCode: "",
     additionalInfo: "",
     intro: "",
-    meetAt: "",
+    meetAt: dayjs(),
   },
 };
 

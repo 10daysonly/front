@@ -16,7 +16,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { setInviteCard } from "./invite-cardSlice";
+import { setInviteCard } from "../../slice";
 import { UploadOutlined } from "@ant-design/icons";
 
 interface ModalComponentProps {

@@ -10,7 +10,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { useRouter } from "next/navigation";
 import ImagesModal from "./imagesModal";
-import { setInviteCard } from "./invite-cardSlice";
+import { setInviteCard } from "../../slice";
 dayjs.locale("ko");
 
 export default function Home() {
@@ -61,7 +61,7 @@ export default function Home() {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 300 }}
-        initialValues={inviteCard}
+        initialValues={{ ...inviteCard, meetAt: dayjs(inviteCard.meetAt) }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
