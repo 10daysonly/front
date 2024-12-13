@@ -27,6 +27,7 @@ const Onboarding = () => {
             </div>
           </div>
           <div className={`fixed-bottom`}>
+            <p className="info-text">링글리와 함께 모임을 시작해요.</p>
             <ButtonBox>
               <Button block={true} size="large" color={`primary`}>
                 시작하기
