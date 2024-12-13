@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/app/store";
 import { useRouter } from "next/navigation";
 import ImagesModal from "./imagesModal";
 import { setInviteCard } from "../../slice";
+import { postGatherings } from "../auth/thunk";
 dayjs.locale("ko");
 
 export default function Home() {
@@ -28,36 +29,65 @@ export default function Home() {
     setIsModalVisible(false); // 모달을 닫기
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log("폼 데이터:", values); // 제출된 데이터 출력
-    dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
+    const storedData = localStorage.getItem("user");
+    if (storedData) {
+      dispatch(
+        setInviteCard({
+          ...values,
+          image: inviteCard.image,
+          hostName: JSON.parse(storedData).name,
+          hostEmail: JSON.parse(storedData).sub,
+        })
+      );
+    } else {
+      dispatch(
+        setInviteCard({
+          ...values,
+          image: inviteCard.image,
+        })
+      ); // 리덕스로 상태 관리
+    }
 
     // 새로 생성일 경우
     if (!fixButton) {
       // 쿠키나 세션 등으로 제어하기
 
-      const storedData = localStorage.getItem("user");
       // 로그인 이력이 없을 경우
       if (!storedData) {
         router.push("/invite/auth/sending");
       } else {
-        // 이전에 로그인 했을 경우
+        // 이전에 로그인 했을 경우 로그인 없이 바로 생성
 
-        const allOfInfo = {
-          ...inviteCard,
-          hostName: JSON.parse(storedData).name,
-          hostEmail: JSON.parse(storedData).sub,
-        };
-        dispatch(setInviteCard(allOfInfo)); // 리덕스로 상태 관리
+        const fetchAction = await dispatch(postGatherings());
 
-        // !! 바로 방생성하는거 추가해야함
-        router.push("/share-links");
+        if (postGatherings.rejected.match(fetchAction)) {
+          console.log("오류");
+        }
+        router.push("/invite/auth/success");
       }
-      message.success("폼이 성공적으로 제출되었습니다!");
     } else {
       // 수정일 경우
-      // !! 업데이트 웹서비스 추가해야함
+      const response = await fetch(`/api/putGatherings/${inviteCard.gatheringId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // hostEmail: JSON.parse(storedData).name,
+          // hostName: JSON.parse(storedData).name,
+          name: values.name,
+          image: values.image,
+          location: values.location,
+          dressCode: values.dressCode,
+          additionalInfo: values.additionalInfo,
+          intro: values.intro,
+          meetAt: values.meetAt,
+        }),
+      });
 
+      console.log(response);
       router.back();
       //경로로하면 찾아갈수있을지.. 데이터만 웹서비스에 담아주고 백하는게 맞는거같기도하고..
       // router.push("/invite-room/te");
