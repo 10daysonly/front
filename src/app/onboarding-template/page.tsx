@@ -11,7 +11,7 @@ import Main from "@/components/Main";
 import Button from "@/components/Button";
 import ButtonBox from "@/components/ButtonBox";
 
-import logo from "./imgs/logo.svg";
+import logo from "./imgs/logo-onboarding.svg";
 
 export default function Home() {
   const router = useRouter();
