@@ -32,7 +32,6 @@ export default function Home() {
     // decoded : {sub: string;name: string;}
     let decoded: any = decodeToken(token as string);
 
-    // 타입 검증 및 안전한 접근
     //로그인
     const userInfo: { sub: string; name: string } = {
       sub: decoded.sub as string,
@@ -40,7 +39,7 @@ export default function Home() {
     };
     localStorage.setItem("user", JSON.stringify(userInfo));
 
-    // 방id로 정보 조회
+    // 방id로 정보 조회 후 데이터 저장
     const fetchAction = await dispatch(getGatherings(gatheringId));
     if (getGatherings.rejected.match(fetchAction)) {
       console.log("오류");

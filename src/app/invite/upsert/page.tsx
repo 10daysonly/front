@@ -28,15 +28,16 @@ export default function Home() {
     setIsModalVisible(false); // 모달을 닫기
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log("폼 데이터:", values); // 제출된 데이터 출력
-    dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
+    await dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
 
+    const storedData = localStorage.getItem("user");
+    dispatch(setInviteCard(values));
     // 새로 생성일 경우
     if (!fixButton) {
       // 쿠키나 세션 등으로 제어하기
 
-      const storedData = localStorage.getItem("user");
       // 로그인 이력이 없을 경우
       if (!storedData) {
         router.push("/invite/auth/sending");
@@ -57,7 +58,25 @@ export default function Home() {
     } else {
       // 수정일 경우
       // !! 업데이트 웹서비스 추가해야함
+      const response = await fetch(`/api/putGatherings/${inviteCard.gatheringId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          hostEmail: JSON.parse(storedData).name,
+          hostName: JSON.parse(storedData).name,
+          name: values.name,
+          image: values.image,
+          location: values.location,
+          dressCode: values.dressCode,
+          additionalInfo: values.additionalInfo,
+          intro: values.intro,
+          meetAt: values.meetAt,
+        }),
+      });
 
+      console.log(response);
       router.back();
       //경로로하면 찾아갈수있을지.. 데이터만 웹서비스에 담아주고 백하는게 맞는거같기도하고..
       // router.push("/invite-room/te");

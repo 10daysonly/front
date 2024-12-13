@@ -1,9 +1,10 @@
 import { Dayjs } from "dayjs";
 
 export interface IInviteCard {
+  gatheringId?: string;
   hostEmail?: string;
   hostName?: string;
-  // host?: IHost;
+  host?: IHost;
   name: string;
   image: string;
   location: string;
@@ -14,12 +15,13 @@ export interface IInviteCard {
   participants?: IParticipants;
 }
 
-// export interface IHost {
-//   name?: string;
-//   email?: string;
-//   paritipantId?: string;
-//   imageUrl?: string;
-// }
+export interface IHost {
+  paritipantId?: string;
+  name?: string;
+  email?: string;
+  imageUrl?: string;
+  joinedAt?: string;
+}
 
 export interface IParticipants {
   participantId: string;
