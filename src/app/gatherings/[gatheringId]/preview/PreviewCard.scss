@@ -1,0 +1,79 @@
+// .preview-card
+.preview-card-page {
+  padding: 32px;
+}
+.preview-card-page .ui-typography {
+  height: 53px;
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(23, 23, 46, 1);
+  text-align: center;
+  font-size: 24px;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+// .preview-card-image
+.preview-card-page .preview-card-image .ui-image {
+  padding: 0;
+}
+
+.preview-card-page .preview-card-datetime {
+  color: var(--text);
+}
+
+.preview-card-page .preview-card-datetime .preview-card-date {
+  padding-top: 16px;
+  font-size: 24px;
+}
+
+.preview-card-page .preview-card-datetime .preview-card-time {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.preview-card-page .preview-card-info {
+  margin-top: 12px;
+  color: var(--text);
+}
+
+.preview-card-page .preview-card-info .ui-datainfo {
+  margin-top: 12px;
+}
+.preview-card-page .preview-card-info .ui-datainfo:last-of-type {
+  margin-top: 24px;
+}
+.preview-card-page .preview-card-info .box {
+  margin-top: 12px;
+  color: var(--text);
+}
+
+.preview-card-page .ui-dim {
+  padding: 40px;
+
+  text-align: center;
+}
+
+.preview-card-page .preview-card-info {
+  position: relative;
+}
+
+.preview-card-page .preview-card-info .ui-dim {
+  position: absolute;
+  top: 200px;
+  bottom: 0;
+  left: -32px;
+  right: -32px;
+  width: auto;
+}
+
+.preview-card-page .preview-card-info .ui-dim .info-text {
+  font-size: 14px;
+  color: #ffe600;
+}
+
+.preview-card-page .preview-card-info .ui-dim .btn {
+  margin-top: 12px;
+}
