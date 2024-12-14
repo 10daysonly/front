@@ -1,10 +1,16 @@
 import { useAppSelector } from "@/app/store";
-import { Button, Radio } from "antd";
+import { Radio } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useWebSocket } from "../../_webSockect/webSocket";
 import { useParams, useSearchParams } from "next/navigation";
 import { decodeToken } from "@/app/utils/token";
+
+import ContentBox from "@/components/ContentBox";
+import Typography from "@/components/Typography";
+import Button from "@/components/Button";
+import Box from "@/components/Box";
+import Text from "@/components/Text";
 
 export default function RandomDraw() {
   const [whichGame, setWhichGame] = useState("secret_santa");
@@ -53,44 +59,63 @@ export default function RandomDraw() {
 
   console.log(isConnected);
   return (
-    <div>
-      <p>랜덤 뽑기</p>
-      <div>
-        {/* <div>연결 상태: {isConnected ? "연결됨" : "연결 안됨"}</div> */}
-        <div>
-          <div>
-            {whichGame == "secret_santa" ? (
-              <>
-                {message ? (
-                  <div>
-                    {message.data?.results?.find((item: any) => item.receiver === decoded.name)
-                      ?.giver || "정보 없음"}
-                  </div>
-                ) : (
-                  "아직 뽑기 시작을 안했습니다"
-                )}
-              </>
-            ) : (
-              <>
-                <div>{message.data.results[0].picked}</div>
-              </>
-            )}
+    <div className="random-draw">
+      <ContentBox>
+        <Typography>랜덤 뽑기</Typography>
+
+        <Box line={true}>
+          {/* <div>연결 상태: {isConnected ? "연결됨" : "연결 안됨"}</div> */}
+          <Button
+            block={true}
+            color={whichGame === `secret_santa` ? "active" : "info-reverse"}
+            onClick={() => {
+              setWhichGame("secret_santa");
+            }}
+          >
+            <Text strong={true} size="large">
+              마니또 뽑기
+            </Text>
+            (본인 제외 랜덤)
+          </Button>
+          <Button
+            block={true}
+            color={whichGame === `random_pick` ? "active" : "info-reverse"}
+            onClick={() => {
+              setWhichGame("random_pick");
+            }}
+          >
+            <Text strong={true} size="large">
+              랜덤 뽑기
+            </Text>
+            (완전 무작위)
+          </Button>
+
+          <div className="random-draw-result">
+            <Box>
+              {whichGame == "secret_santa" ? (
+                <>
+                  {message ? (
+                    <div>
+                      {message.data?.results?.find((item: any) => item.receiver === decoded.name)
+                        ?.giver || "정보 없음"}
+                    </div>
+                  ) : (
+                    "아직 뽑기 시작을 안했습니다"
+                  )}
+                </>
+              ) : (
+                <>
+                  <div>{message.data.results[0].picked}</div>
+                </>
+              )}
+            </Box>
           </div>
-        </div>
-      </div>
-      <Radio.Group
-        onChange={(e) => {
-          setWhichGame(e.target.value);
-        }}
-        value={whichGame}
-        optionType="button"
-        buttonStyle="solid"
-        style={{ display: "flex", flexDirection: "column", gap: "8px" }} // 세로 정렬 및 간격 추가
-      >
-        <Radio.Button value="secret_santa">마니또 뽑기(본인 제외 랜덤)</Radio.Button>
-        <Radio.Button value="random_pick">랜덤 뽑기(완전 무작위)</Radio.Button>
-      </Radio.Group>
-      <Button onClick={onclick}>시작</Button>
+
+          <Button pill={true} color={`primary`} onClick={onclick}>
+            시작
+          </Button>
+        </Box>
+      </ContentBox>
     </div>
   );
 }

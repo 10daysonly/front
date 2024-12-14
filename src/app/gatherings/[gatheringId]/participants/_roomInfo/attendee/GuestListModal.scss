@@ -1,3 +1,18 @@
+.invite-room-page .ui-modal .modal-container {
+  bottom: 32px;
+}
+.invite-room-page .modal-body,
+.invite-room-page .modal-body .guest-list-modal {
+  height: 100%;
+}
+
+.modal-body .guest-list-modal .guest-list-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
 .guest-list-modal .guest-list-box {
   padding: 28px 24px;
 }
@@ -15,7 +30,10 @@
   font-size: 20px;
   color: var(--text-reverse);
 }
-
+.guest-list-modal .guest-list-box .ui-list {
+  overflow: scroll;
+  flex: 1;
+}
 .guest-list-modal .guest-list-box .ui-list .ui-list-item {
   margin-top: 28px;
 }

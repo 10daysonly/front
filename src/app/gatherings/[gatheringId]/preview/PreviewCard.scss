@@ -1,6 +1,18 @@
 // .preview-card
 .preview-card-page {
-  padding: 32px;
+  padding: 32px 32px 0;
+  height: 100vh;
+}
+
+.preview-card-page .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.preview-card-page .preview-card-info {
+  flex: 1;
 }
 .preview-card-page .ui-typography {
   height: 53px;
@@ -64,11 +76,12 @@
 
 .preview-card-page .preview-card-info .ui-dim {
   position: absolute;
-  top: 200px;
+  top: 90px;
   bottom: 0;
   left: -32px;
   right: -32px;
   width: auto;
+  box-sizing: border-box;
 }
 
 .preview-card-page .preview-card-info .ui-dim .info-text {

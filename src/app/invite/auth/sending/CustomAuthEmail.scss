@@ -70,4 +70,10 @@
   .btn-box .ant-col-offset-8 {
     margin: 0;
   }
+
+  .ant-col-16,
+  .ant-col-offset-8 {
+    width: 100%;
+    margin: 0;
+  }
 }

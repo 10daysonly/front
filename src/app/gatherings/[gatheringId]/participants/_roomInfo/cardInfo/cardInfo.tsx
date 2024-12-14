@@ -9,15 +9,18 @@ import DataInfo from "@/components/DataInfo";
 import Box from "@/components/Box";
 import Image from "@/components/Image";
 
+import dummyImage from "@/components/Image/imgs/dummyImage.png";
+
 export default function CardInfo() {
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
 
   return (
     <div className={`invite-info`}>
       <div className={`invite-room-image`}>
-        <Image alt="card image" src={inviteCard.image} width={300} height={200} />
+        {/* <Image alt="card image" src={inviteCard.image} width={300} height={200} /> */}
+        <Image alt="card image" src={dummyImage.src} width={300} height={200} />
       </div>
-      <Typography level={1}>{inviteCard.name}</Typography>
+      <Typography level={1}>{inviteCard.name}sdgsg</Typography>
       <DataInfo icon={<Icon icon="calendarLarge" />} title="Date">
         12 월 22일 일요일
       </DataInfo>

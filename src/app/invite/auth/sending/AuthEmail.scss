@@ -2,6 +2,11 @@
   background: #100f1c;
 }
 
+.auth-email-page .layout-container {
+  height: 100vh;
+  position: relative;
+}
+
 .auth-email-page .main {
   padding: 16px 32px 30px;
 }
@@ -34,4 +39,11 @@
 
 .auth-email-page .ui-formgroup .formgroup-title {
   color: #6d7383;
+}
+
+.auth-email-page .btn-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }

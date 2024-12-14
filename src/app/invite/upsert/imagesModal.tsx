@@ -1,23 +1,24 @@
 "use client";
 
-import {
-  Button,
-  Card,
-  Col,
-  Image,
-  Input,
-  message,
-  Modal,
-  Row,
-  Tabs,
-  TabsProps,
-  Upload,
-} from "antd";
+import React from "react";
+
+import { Card, Col, message, Row, TabsProps, Upload } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { setInviteCard } from "../../slice";
 import { UploadOutlined } from "@ant-design/icons";
+
+import "./InviteCardModal.scss";
+
+import Modal from "@/components/Modal";
+import Input from "@/components/Input";
+import Icon from "@/components/Icon";
+import Button from "@/components/Button";
+import ButtonBox from "@/components/ButtonBox";
+import Tabs from "@/components/Tabs";
+import List from "@/components/List";
+import Image from "@/components/Image";
 
 interface ModalComponentProps {
   visible: boolean;
@@ -94,7 +95,7 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
     onClose();
   };
 
-  const items: TabsProps["items"] = [
+  const items = [
     {
       key: "1",
       label: "일러스트",
@@ -107,32 +108,58 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
     },
     {
       key: "3",
-      label: "짤",
+      label: "GIF's",
       children: (
-        <Row gutter={16}>
-          {images.map((src, index) => (
-            <img alt={`image-${index}`} src={src} width={200} height={200} onClick={onClickImage} />
-          ))}
-        </Row>
+        <div className="image-list-box">
+          <List
+            grid={true}
+            dataSource={images}
+            renderItem={(src) => {
+              return <Image src={src} onClick={onClickImage} />;
+            }}
+          />
+        </div>
       ),
     },
   ];
 
+  // return (
+  //   <>
+  //     <Modal title="카드 이미지 등록" open={visible} onCancel={onClose} footer={null}>
+  //       <Input
+  //         placeholder="검색"
+  //         value={searchText}
+  //         onChange={(e) => {
+  //           setSearchText(e.target.value);
+  //         }}
+  //       />
+  //       <Upload onChange={imageUpload}>
+  //         <Button icon={<UploadOutlined />}>Click to Upload</Button>
+  //       </Upload>
+  //       <Tabs activeKey={activeKey} onChange={handleTabChange} items={items} />
+  //     </Modal>
+  //   </>
+  // );
+
   return (
-    <>
-      <Modal title="카드 이미지 등록" open={visible} onCancel={onClose} footer={null}>
-        <Input
-          placeholder="검색"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <Upload onChange={imageUpload}>
-          <Button icon={<UploadOutlined />}>Click to Upload</Button>
-        </Upload>
-        <Tabs activeKey={activeKey} onChange={handleTabChange} items={items} />
-      </Modal>
-    </>
+    <Modal open={visible} onClose={onClose}>
+      <div className="invite-card-modal">
+        <div className={`search-header`}>
+          <Button color="default">
+            <Icon icon="backReverse" />
+          </Button>
+          <div className={`search-box`}>
+            <Input variant="normal" placeholder="키워드를 검색해보세요." size="small" />
+            <Icon icon="search" />
+          </div>
+        </div>
+        <Tabs items={items} activeKey={activeKey} onChange={handleTabChange} />
+        <ButtonBox>
+          <Button block={true} color="primary" icon={<Icon icon="camera" />} iconPosition="start">
+            사진 업로드
+          </Button>
+        </ButtonBox>
+      </div>
+    </Modal>
   );
 }

@@ -1,13 +1,23 @@
 .invite-card-page {
-  background-image: linear-gradient(#e1e6fe, #8a7bfe 57%, #674ffe 100%),
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    linear-gradient(#5242b8, #3c2dae 54%, #8c9ffb 100%);
 }
+
 .invite-card-page .img-edit {
   overflow: hidden;
   position: relative;
-  width: 155px;
-  height: 155px;
-  margin: 0 auto 40px;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 16px;
+  background: var(#e8e7ec);
+}
+
+.invite-card-page .img-edit .ui-image {
+  height: 100%;
+}
+
+.invite-card-page .img-edit .ui-image img {
+  background: #e8e7ec;
 }
 
 .invite-card-page .img-edit .btn {
@@ -17,14 +27,14 @@
   border-radius: 0;
 }
 
-.invite-card-page .btn-box {
-  padding-top: 40px;
-  padding-left: 0;
-  padding-right: 0;
+.invite-card-page .ui-formgroup.direction-vertical {
+  margin-top: 24px;
 }
 
 .invite-card-page .btn-box {
   display: flex;
-  flex-direction: row;
-  gap: 8px;
+  gap: 6px;
+  padding-top: 40px;
+  padding-left: 0;
+  padding-right: 0;
 }

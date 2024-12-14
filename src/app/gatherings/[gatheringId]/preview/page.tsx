@@ -55,20 +55,21 @@ export default function Home() {
             {/* <div className="preview-card-date">{inviteCard.meetAt}</div> */}
             {/* <div className="preview-card-time">{inviteCard.meetAt}</div> */}
           </div>
+          {/* 시간이 나오는 경우 dim 처리 정상 */}
           <DataInfo icon={<Icon icon="locationLarge" />} title="Location">
             성수동 한옥집 와인 카페
           </DataInfo>
           <DataInfo icon={<Icon icon="sparkLarge" />} title="Dress code">
             빨간새, 화려한 색의 원피스
           </DataInfo>
-          <DataInfo title="Additional info">
+          {/* <DataInfo title="Additional info">
             Lorem ipsum dolor sit amet consectetur adipisicing
           </DataInfo>
           <Box>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae quisquam, nesciunt
             voluptates ad officiis quidem, excepturi culpa omnis officia sapiente facere ut iusto
             sed velit? Obcaecati ut adipisci sed accusamus?
-          </Box>
+          </Box> */}
           <Dim open={true} position="bottom">
             <p className="info-text">이벤트 내용과 참석자가 궁금하다면,</p>
             <Button color="primary" onClick={handleRedirect}>

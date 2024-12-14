@@ -1,4 +1,12 @@
 .invite-card-page {
+  .ant-col-16 {
+    max-width: 100%;
+  }
+
+  .ant-col-offset-8 {
+    margin: 0;
+  }
+
   .ant-form-item {
     input,
     textarea {
@@ -13,6 +21,7 @@
       color: var(--text);
       font-weight: bold;
       box-sizing: border-box;
+      font-weight: 400;
     }
 
     textarea {
@@ -36,19 +45,29 @@
       box-shadow: none;
     }
 
+    .ant-picker {
+      padding: 0;
+    }
+
     .ant-picker-outlined {
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    .ant-picker-outlined input,
+    .ant-picker-outlined input:hover {
       background: rgba(255, 255, 255, 0.1);
       border-color: rgba(255, 255, 255, 0.1);
+      background-clip: padding-box;
       height: 56px;
+      font-weight: 400;
     }
 
     .ant-picker .ant-picker-input > input:hover,
     .ant-picker .ant-picker-input > input:focus {
-      background-color: transparent;
-      border-color: transparent;
-      padding-left: calc(40% - 11px);
       color: var(--focus-color);
       outline: none;
+      border: 1px solid rgb(255, 255, 255);
     }
 
     .ant-picker .ant-picker-suffix {
