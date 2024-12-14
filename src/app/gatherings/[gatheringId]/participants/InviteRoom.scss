@@ -1,0 +1,117 @@
+// .invite-room-image
+.invite-room-page .invite-room-image .ui-image {
+  padding: 0;
+}
+
+// .invite-info
+.invite-room-page .invite-info .ui-typography {
+  padding: 12px 32px 24px;
+  text-align: center;
+  font-size: 24px;
+  color: var(--text);
+  text-align: center;
+}
+
+.invite-room-page .invite-info .ui-datainfo:last-of-type {
+  margin-top: 24px;
+}
+.invite-room-page .invite-info .box {
+  margin-top: 12px;
+  color: var(--text);
+}
+
+// .guestbook-list-box
+.invite-room-page .guestbook-list-box .ui-typography.level-1 {
+  padding-top: 24px;
+  padding-bottom: 12px;
+  font-size: 12px;
+  color: var(--text);
+}
+.invite-room-page .guestbook-list-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invite-room-page .guestbook-list-content .guestbook-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.invite-room-page .guestbook-list-content .guestbook-list .ellipsis {
+  line-height: 30px;
+  color: var(--text);
+}
+.invite-room-page .guestbook-list-content .count {
+  margin-left: 32px;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 20px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+}
+
+// .random-draw
+.invite-room-page .random-draw {
+  padding-top: 32px;
+  background: rgba(109, 115, 131, 0.08);
+  font-size: 20px;
+}
+.invite-room-page .random-draw .ui-typography {
+  padding-bottom: 10px;
+  font-size: 20px;
+  color: var(--text);
+}
+.invite-room-page .random-draw .box {
+  text-align: center;
+}
+
+.invite-room-page .random-draw .btn {
+  margin-top: 16px;
+}
+.invite-room-page .random-draw .btn .size-large {
+  font-size: 20px;
+}
+
+.invite-room-page .random-draw .btn:first-child {
+  margin-top: 0;
+}
+
+.invite-room-page .random-draw .btn.color-primary {
+  margin: 24px auto 0;
+}
+
+// .guestbook-form
+.invite-room-page .guestbook-form {
+  background: rgba(109, 115, 131, 0.08);
+  padding-top: 24px;
+}
+
+.invite-room-page .guestbook-form .ui-typography {
+  padding-bottom: 10px;
+  font-size: 20px;
+  color: var(--text);
+}
+.invite-room-page .guestbook-form .guestbook-form-resgister {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.invite-room-page .guestbook-form .guestbook-form-resgister input {
+  padding-right: 40px;
+}
+
+.invite-room-page .guestbook-form .guestbook-form-resgister .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  min-width: 50px;
+}
+
+.invite-room-page .guestbook-form .ui-list-item {
+  margin-top: 20px;
+  padding-bottom: 80px;
+}

@@ -1,0 +1,21 @@
+.guest-list-modal .guest-list-box {
+  padding: 28px 24px;
+}
+.guest-list-modal .guest-list-box .guest-list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28px;
+  padding-bottom: 28px;
+  color: var(--text-reverse);
+}
+
+.guest-list-modal .guest-list-box .guest-list-header .ui-typography {
+  font-size: 20px;
+  color: var(--text-reverse);
+}
+
+.guest-list-modal .guest-list-box .ui-list .ui-list-item {
+  margin-top: 28px;
+}

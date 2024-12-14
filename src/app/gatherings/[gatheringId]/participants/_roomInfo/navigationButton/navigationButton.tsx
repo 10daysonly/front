@@ -7,6 +7,8 @@ import { setFixButton } from "./navigationButtonSlice";
 import { resetInviteCard } from "@/app/slice";
 import axios from "axios";
 
+import GNB from "@/components/GNB";
+
 export default function NavigationButton() {
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -46,20 +48,41 @@ export default function NavigationButton() {
     message.success("삭제완");
     console.log(response);
   };
-  return (
-    <div style={{ display: "grid", gap: "10px" }}>
-      <Button type="primary" onClick={fixCard}>
-        수정하기
-      </Button>
-      <Button type="primary" onClick={URLCopy}>
-        초대하기
-      </Button>
-      <Button type="primary" onClick={newCard}>
-        새로 만들기
-      </Button>
-      <Button type="primary" onClick={deleteCard}>
-        삭제하기
-      </Button>
-    </div>
-  );
+
+  const menus: {
+    text: React.ReactNode;
+    icon: "edit" | "share" | "invite" | "delete";
+    onClick: Function;
+  }[] = [
+    {
+      text: "수정하기",
+      onClick: () => {
+        fixCard();
+      },
+      icon: "edit",
+    },
+    {
+      text: "URL 공유하기",
+      onClick: () => {
+        URLCopy();
+      },
+      icon: "share",
+    },
+    {
+      text: "초대하기",
+      onClick: () => {
+        newCard();
+      },
+      icon: "invite",
+    },
+    {
+      text: "삭제하기",
+      onClick: () => {
+        deleteCard();
+      },
+      icon: "delete",
+    },
+  ];
+
+  return <GNB menus={menus} active="edit" />;
 }

@@ -1,16 +1,16 @@
 "use client";
 
 import {
-  Avatar,
-  Button,
+  // Avatar,
+  // Button,
   Card,
   Col,
   Form,
   Image,
   Input,
-  List,
+  // List,
   message,
-  Modal,
+  // Modal,
   Row,
   Skeleton,
   Tabs,
@@ -21,6 +21,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { UploadOutlined } from "@ant-design/icons";
+
+import "./GuestListModal.scss";
+
+import Modal from "@/components/Modal";
+import List from "@/components/List";
+import Button from "@/components/Button";
+import Avatar from "@/components/Avatar";
+import Typography from "@/components/Typography";
+import Icon from "@/components/Icon";
+import Text from "@/components/Text";
+import Dropdown from "@/components/Dropdown";
+import ButtonBox from "@/components/ButtonBox";
 
 interface ModalComponentProps {
   visible: boolean;
@@ -89,33 +101,55 @@ export default function AttendeeModal({ visible, onClose }: ModalComponentProps)
           lineHeight: "32px",
         }}
       >
-        <Button onClick={onLoadMore}>loading more</Button>
+        <Button size="small" color="primary" onClick={onLoadMore}>
+          loading more
+        </Button>
       </div>
     ) : null;
+
   return (
     <>
-      <Modal title="카드 이미지 등록" open={visible} onCancel={onClose} footer={null}>
-        <div>참석하는 사람 15명</div>
-        <ul>
-          <Form></Form>
-          <List
-            className="demo-loadmore-list"
-            loading={initLoading}
-            itemLayout="horizontal"
-            loadMore={loadMore}
-            dataSource={list}
-            renderItem={(item) => (
-              <List.Item actions={[<a key="list-loadmore-edit">참석불가</a>]}>
-                <Skeleton avatar title={false} loading={item.loading} active>
-                  <List.Item.Meta
-                    avatar={<Avatar src={item.picture.large} />}
-                    title={<a href="https://ant.design">{item.name?.last}</a>}
-                  />
-                </Skeleton>
-              </List.Item>
-            )}
-          />
-        </ul>
+      <Modal open={visible} onClose={onClose}>
+        <div className="guest-list-modal">
+          <div className="guest-list-box">
+            <div className="guest-list-header">
+              <Typography>
+                <Text strong={true}>총 참석자</Text>: 15명
+              </Typography>
+              <div className="guest-list-header-right">
+                <Icon icon="share" />
+              </div>
+            </div>
+            <List
+              reverse={true}
+              dataSource={list}
+              renderItem={(item) => {
+                return (
+                  <List.Item
+                    actions={
+                      <>
+                        <Dropdown
+                          value="a"
+                          options={[
+                            { text: "참석예정", value: "a" },
+                            { text: "참석불가", value: "b" },
+                          ]}
+                          onChange={() => {}}
+                        />
+                      </>
+                    }
+                  >
+                    <List.Item.Meta
+                      avatar={<Avatar size="large" src={item.picture.large} />}
+                      title={item.name?.last}
+                    />
+                  </List.Item>
+                );
+              }}
+            />
+            <ButtonBox>{loadMore}</ButtonBox>
+          </div>
+        </div>
       </Modal>
     </>
   );
