@@ -33,19 +33,47 @@ export default function Home() {
 
   // submit
   const onFinish = async (values: any) => {
-    const allOfInfo = { ...inviteCard, hostName: values.name, hostEmail: values.hostEmail };
-    dispatch(setInviteCard(allOfInfo)); // 리덕스로 상태 관리
-    console.log(allOfInfo);
+    // 미리보기 화면에서 왔을경우
+    if (beforePreview) {
+      function base64urlEncode(str: any) {
+        return Buffer.from(str).toString("base64url");
+      }
 
-    const fetchAction = await dispatch(postGatherings());
+      // 헤더 생성
+      const header = {
+        alg: "none", // 서명 알고리즘을 'none'으로 설정
+        typ: "JWT",
+      };
 
-    if (postGatherings.rejected.match(fetchAction)) {
-      console.log("오류");
+      // 페이로드 생성
+      const payload = {
+        sub: "lotek60370@pokeline.com",
+        name: "sddd",
+      };
+
+      // 각 부분을 Base64URL로 인코딩
+      const encodedHeader = base64urlEncode(JSON.stringify(header));
+      const encodedPayload = base64urlEncode(JSON.stringify(payload));
+
+      // 서명 없는 JWT 생성
+      const jwt = `${encodedHeader}.${encodedPayload}.`;
+
+      router.push(`/gatherings/${searchParams.get("gatheringId")}/participants?token=${jwt}`);
+    } else {
+      // 카드생성에서 왔을경우
+      const allOfInfo = { ...inviteCard, hostName: values.name, hostEmail: values.hostEmail };
+      dispatch(setInviteCard(allOfInfo)); // 리덕스로 상태 관리
+      console.log(allOfInfo);
+
+      const fetchAction = await dispatch(postGatherings());
+
+      if (postGatherings.rejected.match(fetchAction)) {
+        console.log("오류");
+      }
+
+      message.warning("메일을 전송 하였습니다");
+      router.push("/invite/auth/success");
     }
-    message.warning("메일을 재전송 하였습니다");
-
-    message.warning("메일을 전송 하였습니다");
-    router.push("/invite/auth/success");
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -55,7 +83,7 @@ export default function Home() {
 
   return (
     <Layout page="auth-email">
-      {beforePreview ? (
+      {!beforePreview ? (
         <BackHeader
           onClick={() => {
             router.push("/invite/upsert");

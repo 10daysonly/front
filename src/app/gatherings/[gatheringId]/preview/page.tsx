@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   const handleRedirect = () => {
-    router.push(`/invite/auth/sending?d=preview`);
+    router.push(`/invite/auth/sending?d=preview&gatheringId=${gatheringId}`);
   };
 
   return (
