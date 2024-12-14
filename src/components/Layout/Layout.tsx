@@ -8,7 +8,11 @@ interface Props {
 }
 
 const Layout = ({ children, page }: Props) => {
-  return <div className={`layout ${page ? `${page}-page` : ``}`}>{children}</div>;
+  return (
+    <div className={`layout ${page ? `${page}-page` : ``}`}>
+      <div className="layout-container">{children}</div>
+    </div>
+  );
 };
 
 export default Layout;

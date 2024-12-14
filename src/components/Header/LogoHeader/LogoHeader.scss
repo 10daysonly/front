@@ -1,8 +1,20 @@
+.header.logo-header {
+  padding-left: 38px;
+}
+
+.header.logo-header .logo {
+  position: relative;
+}
+
 .header.logo-header .logo img {
   vertical-align: middle;
 }
 .header.logo-header .logo .text {
-  color: var(--text);
+  font-size: 0;
+  color: transparent;
+  position: absolute;
+  top: -9999px;
+  left: 0;
   font-size: 16px;
   vertical-align: middle;
 }

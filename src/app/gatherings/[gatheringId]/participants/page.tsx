@@ -15,6 +15,7 @@ import { getGatherings, postParticipants } from "./thunks";
 import { decodeToken } from "@/app/utils/token";
 
 import "./InviteRoom.scss";
+import "./CustomInviteRoom.scss";
 import "./invite-room.module.css"; // custom css
 
 import Layout from "@/components/Layout";

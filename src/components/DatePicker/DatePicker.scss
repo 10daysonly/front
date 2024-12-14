@@ -1,0 +1,75 @@
+.ui-date-picker {
+  .mbsc-ios.mbsc-datepicker-inline {
+    background: transparent;
+  }
+  .mbsc-datepicker-tab-wrapper {
+    gap: 8px;
+  }
+  .mbsc-datepicker-tab {
+    overflow: hidden;
+    max-width: 320px;
+    border-radius: 12px;
+  }
+  .mbsc-ios.mbsc-datepicker-inline {
+    border: none;
+    border-radius: 12px;
+  }
+  .mbsc-datepicker-tab {
+    width: 100%;
+  }
+
+  .mbsc-ios.mbsc-calendar-button.mbsc-button {
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000;
+  }
+  .mbsc-ios.mbsc-calendar-week-day {
+    color: rgba(60, 60, 67, 0.6);
+  }
+
+  .mbsc-ios.mbsc-datepicker .mbsc-calendar-slide {
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 14px;
+  }
+
+  .mbsc-calendar-week-days {
+    margin-bottom: 4px;
+  }
+
+  .mbsc-scroller {
+    // background: #d9d9d9;
+  }
+
+  .mbsc-ios.mbsc-calendar-header {
+    padding-top: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mbsc-calendar-day-outer .mbsc-calendar-month-name {
+    opacity: 1;
+    color: #808080;
+  }
+
+  .mbsc-ios.mbsc-selected .mbsc-calendar-cell-text {
+    border-color: var(--primary);
+    background: var(--primary);
+  }
+
+  .mbsc-ios.mbsc-scroller-wheel-line {
+    background: #e2deff;
+  }
+  .mbsc-scroller-wheel-group {
+    position: relative;
+    z-index: 1;
+  }
+
+  .mbsc-ios.mbsc-scroller-wheel-cont-inline.mbsc-scroller-wheel-cont-3d {
+    background: transparent;
+  }
+
+  .mbsc-icon > svg {
+    fill: var(--primary);
+  }
+}

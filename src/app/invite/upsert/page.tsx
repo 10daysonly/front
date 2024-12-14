@@ -149,7 +149,7 @@ export default function Home() {
                     showModal();
                   }}
                 >
-                  Edit
+                  수정
                 </Button>
               </div>
             </Form.Item>
