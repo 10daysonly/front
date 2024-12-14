@@ -25,7 +25,7 @@ import { IParticipants } from "@/app/types";
 
 export default function Home() {
   const { gatheringId } = useParams();
-  const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
+  const { inviteCard, isHost } = useAppSelector((state) => state.inviteCardSlice);
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
   const token = searchParams.get("token"); // 쿼리스트링에서 'token'의 값을 가져옴
@@ -59,11 +59,11 @@ export default function Home() {
     const email = hostUser ? hostUser.email : null;
 
     if (userInfo.sub == email) {
-      setIsHost(true);
-      message.success("나 호스트임");
+      dispatch(setIsHost(true));
+      console.log("나 호스트임");
     } else {
-      setIsHost(false);
-      message.success("나 게스트임");
+      dispatch(setIsHost(false));
+      console.log("나 게스트임");
       // 게스트 업데이트 웹서비스 보내고 다시 방정보 조회할 것
 
       // console.log("오류나면 아마 이미 이전에 접속한 이력이있으며 카드그룹에 정보가 이미 있음");
@@ -84,9 +84,9 @@ export default function Home() {
           <CardInfo />
           <Attendee />
         </ContentBox>
-        <RandomDraw />
-        <GuestbookForm />
-        <NavigationButton />
+        {/* <RandomDraw /> */}
+        {/* <GuestbookForm /> */}
+        {isHost && <NavigationButton />}
       </Main>
     </Layout>
   );
