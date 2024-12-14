@@ -30,6 +30,7 @@ jobs:
           tags: ${{ env.HARBOR_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           build-args: |
             NEXT_PUBLIC_API_URL=https://ringly-api.oognuyh.com
+            WEBSOCKET_URL=wss://ringly-api.oognuyh/ws
 
   deploy:
     runs-on: ubuntu-latest
