@@ -11,7 +11,7 @@ export interface IInviteCard {
   dressCode: string;
   additionalInfo: string;
   intro: string;
-  meetAt: string | Dayjs;
+  meetAt: any;
   participants?: IParticipants[];
 }
 
