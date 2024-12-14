@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import { message, Upload } from "antd";
 // import {
 //   Button,
@@ -16,24 +14,21 @@ import { message, Upload } from "antd";
 //   TabsProps,
 //   Upload,
 // } from "antd";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/app/store";
-import { setInviteCard } from "./invite-cardSlice";
-import { UploadOutlined } from "@ant-design/icons";
+// import { setInviteCard } from "./invite-cardSlice";
 
 import "./InviteCardModal.scss";
 
-import Modal from "@/components/Modal";
-import Input from "@/components/Input";
-import Icon from "@/components/Icon";
 import Button from "@/components/Button";
 import ButtonBox from "@/components/ButtonBox";
-import Tabs from "@/components/Tabs";
-import List from "@/components/List";
+import Icon from "@/components/Icon";
 import Image from "@/components/Image";
-
-import dummyImage2 from "@/components/Image/imgs/dummyImage2.png";
+import Input from "@/components/Input";
+import List from "@/components/List";
+import Modal from "@/components/Modal";
+import Tabs from "@/components/Tabs";
 
 interface ModalComponentProps {
   visible: boolean;
@@ -106,7 +101,7 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
 
   // 이미지 클릭시
   const onClickImage = (e: any) => {
-    dispatch(setInviteCard({ ...inviteCard, image: e.target.currentSrc }));
+    // dispatch(setInviteCard({ ...inviteCard, image: e.target.currentSrc }));
     onClose();
   };
 

@@ -1,35 +1,31 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-import "./InviteCard.scss";
 import "./CustomInviteCard.scss";
 import "./invite-card.module.css"; // custom css
+import "./InviteCard.scss";
 
 // import { Button, Card, ConfigProvider, DatePicker, Form, Image, Input, message } from "antd";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import { ConfigProvider, DatePicker, Form, Input, message } from "antd";
 import koKR from "antd/locale/ko_KR";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
-import { EditOutlined } from "@ant-design/icons";
-import { useAppDispatch, useAppSelector } from "@/app/store";
 import { useRouter } from "next/navigation";
 import ImagesModal from "./imagesModal";
-import { setInviteCard } from "./invite-cardSlice";
+// import { setInviteCard } from "./invite-cardSlice";
 dayjs.locale("ko");
 
 import "./InviteCard.scss";
 
-import Layout from "@/components/Layout";
 import { LogoHeader } from "@/components/Header";
+import Layout from "@/components/Layout";
 import Main from "@/components/Main";
 
 import ContentBox from "@/components/ContentBox";
-import Image from "@/components/Image";
 import FormGroup from "@/components/FormGroup";
+import Image from "@/components/Image";
 // import Input from "@/components/Input";
 // import Textarea from "@/components/Textarea";
 import Button from "@/components/Button";
@@ -57,7 +53,7 @@ export default function Home() {
     console.log("폼 데이터:", values); // 제출된 데이터 출력
 
     if (!fixButton) {
-      dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
+      // dispatch(setInviteCard({ ...values, image: inviteCard.image })); // 리덕스로 상태 관리
       // 쿠키나 세션 등으로 제어하기
       if (true) {
         router.push("/invite/auth/sending");

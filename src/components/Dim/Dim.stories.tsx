@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 
 import Dim from "./";
 
@@ -16,7 +15,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
-  args: {},
+  args: {
+    open: false,
+  },
   decorators: [
     (Story) => {
       return (
