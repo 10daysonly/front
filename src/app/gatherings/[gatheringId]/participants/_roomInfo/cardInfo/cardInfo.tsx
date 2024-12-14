@@ -1,13 +1,12 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/app/store";
-// import { Image } from "antd";
+import { Image } from "antd";
 
 import Typography from "@/components/Typography";
 import Icon from "@/components/Icon";
 import DataInfo from "@/components/DataInfo";
 import Box from "@/components/Box";
-import Image from "@/components/Image";
 
 import dummyImage from "@/components/Image/imgs/dummyImage.png";
 

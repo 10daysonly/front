@@ -114,8 +114,8 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
           <List
             grid={true}
             dataSource={images}
-            renderItem={(src) => {
-              return <Image src={src} onClick={onClickImage} />;
+            renderItem={(src: any) => {
+              return <img alt={``} src={src} onClick={onClickImage} />;
             }}
           />
         </div>
