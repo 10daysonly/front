@@ -30,7 +30,7 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
   const dispatch = useAppDispatch();
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
   const [activeKey, setActiveKey] = useState<string>("3"); // 활성화된 탭을 관리
-  const [searchText, setSearchText] = useState("파티");
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (activeKey == "3") {
@@ -39,9 +39,9 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
   }, [activeKey]);
 
   useEffect(() => {
-    if (activeKey == "3") {
-      meme();
-    }
+    // if (activeKey == "3") {
+    meme();
+    // }
   }, [searchText]);
 
   // 이미지 업로드
@@ -83,9 +83,10 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
 
   // 짤 리스트 업데이트
   const meme = async () => {
-    let images = await axios.get(
-      `https://g.tenor.com/v1/search?q=${searchText}&key=LIVDSRZULELA&limit=10`
-    );
+    const url = `https://g.tenor.com/v1/random?q=${
+      searchText == "" ? "파티" : searchText
+    }&key=LIVDSRZULELA&limit=10`;
+    let images = await axios.get(url);
     setImages(images.data.results.map((url: any) => url.media[0].gif.url));
   };
 
@@ -149,7 +150,14 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
             <Icon icon="backReverse" />
           </Button>
           <div className={`search-box`}>
-            <Input variant="normal" placeholder="키워드를 검색해보세요." size="small" />
+            <Input
+              variant="normal"
+              placeholder="키워드를 검색해보세요."
+              size="small"
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+            />
             <Icon icon="search" />
           </div>
         </div>
