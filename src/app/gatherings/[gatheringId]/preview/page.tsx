@@ -26,6 +26,7 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
   const router = useRouter();
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
     getToken();
@@ -33,10 +34,21 @@ export default function Home() {
 
   const getToken = async () => {
     const fetchAction = await dispatch(getGatheringsPreview(gatheringId));
-
     if (getGatheringsPreview.rejected.match(fetchAction)) {
       console.log("오류");
     }
+    const date = new Date(fetchAction.payload.meetAt);
+    const options: any = { hour: "2-digit", hour12: true, timeZone: "Asia/Seoul" };
+    const timeString = date.toLocaleString("ko-KR", options);
+    const [amPm, hour] = timeString.split(" ");
+    setData({
+      ...fetchAction.payload,
+      day: date.getUTCDate(),
+      month: date.toLocaleString("ko-KR", { month: "long", timeZone: "Asia/Seoul" }),
+      dayOfWeek: date.toLocaleString("ko-KR", { weekday: "long", timeZone: "Asia/Seoul" }),
+      amPm: amPm,
+      hour: hour,
+    });
   };
 
   const handleRedirect = () => {
@@ -50,6 +62,11 @@ export default function Home() {
         <div className={`preview-card-image`}>
           <Image src={inviteCard.image} width={311} height={311} />
         </div>
+        <div>{data?.day}</div>
+        <div>{data?.month}</div>
+        <div>{data?.dayOfWeek}</div>
+        <div>{data?.amPm}</div>
+        <div>{data?.hour}</div>
         <div className={`preview-card-info`}>
           <div className="preview-card-datetime">
             {/* <div className="preview-card-date">{inviteCard.meetAt}</div> */}
