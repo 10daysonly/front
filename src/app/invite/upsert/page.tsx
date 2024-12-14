@@ -230,14 +230,8 @@ export default function Home() {
             </FormGroup>
             <Form.Item label={null}>
               <ButtonBox>
-                {fixButton ? (
-                  <Button
-                    block={true}
-                    size="large"
-                    color="primary"
-                    onClick={() => {}}
-                    htmlType="submit"
-                  >
+                {!fixButton ? (
+                  <Button block={true} size="large" color="primary" htmlType="submit">
                     작성 완료
                   </Button>
                 ) : (
