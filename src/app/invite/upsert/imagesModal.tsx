@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Card, Col, message, Row, TabsProps, Upload } from "antd";
+import { Card, Col, message, Row, TabsProps, Upload, Image } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store";
@@ -18,7 +18,7 @@ import Button from "@/components/Button";
 import ButtonBox from "@/components/ButtonBox";
 import Tabs from "@/components/Tabs";
 import List from "@/components/List";
-import Image from "@/components/Image";
+// import Image from "@/components/Image";
 
 interface ModalComponentProps {
   visible: boolean;
