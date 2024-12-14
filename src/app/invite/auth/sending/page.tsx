@@ -83,16 +83,12 @@ export default function Home() {
 
   return (
     <Layout page="auth-email">
-      {!beforePreview ? (
-        <BackHeader
-          onClick={() => {
-            router.push("/invite/upsert");
-          }}
-        />
-      ) : (
-        ""
-      )}
-
+      <BackHeader
+        onClick={() => {
+          if (beforePreview) router.back(); // guest
+          else router.push("/invite/upsert"); // host
+        }}
+      />
       <Main>
         <Form
           name="basic"
@@ -103,21 +99,29 @@ export default function Home() {
           autoComplete="off"
         >
           {/* host */}
-          <Typography>
-            호스트 인증으로
-            <br /> 이벤트 개최를 확정하세요
-          </Typography>
-          <Typography level={2}>
-            작성하신 정보는 본인 확인과 이벤트 관리 목적으로만 사용되며, <br />
-            다른 용도로는 이용되지 않아요.
-          </Typography>
+          {!beforePreview && (
+            <>
+              <Typography>
+                호스트 인증으로
+                <br /> 이벤트 개최를 확정하세요
+              </Typography>
+              <Typography level={2}>
+                작성하신 정보는 본인 확인과 이벤트 관리 목적으로만 사용되며, <br />
+                다른 용도로는 이용되지 않아요.
+              </Typography>
+            </>
+          )}
 
           {/* guest */}
-          {/* <Typography>
-          참석자로 등록 후
-          <br /> 이벤트를 확인해 보세요
-        </Typography>
-        <Typography level={2}>입력하신 정보는 이벤트 진행 목적으로만 사용됩니다.</Typography> */}
+          {beforePreview && (
+            <>
+              <Typography>
+                참석자로 등록 후
+                <br /> 이벤트를 확인해 보세요
+              </Typography>
+              <Typography level={2}>입력하신 정보는 이벤트 진행 목적으로만 사용됩니다.</Typography>
+            </>
+          )}
 
           <div className="auth-email-box">
             <FormGroup title="이름">
@@ -141,16 +145,13 @@ export default function Home() {
             {/* <p className="info-text">입력한 이메일 주소가 올바른지 다시 한 번 확인해 주세요</p> */}
             <Form.Item label={null}>
               <Button color="primary" size="large" block={true} htmlType="submit">
-                작성완료
+                {!beforePreview && "작성완료"} {/** host */}
+                {beforePreview && "본인 인증하기"} {/** guest */}
               </Button>
             </Form.Item>
-            {/* <Button color="primary" size="large" block={true}>
-            인증하기
-          </Button>
-          <Button color="primary" size="large" block={true}>
-            본인 확인하기
-          </Button> */}
-            {/* <p className="info-text">참석이 힘들다면 참석자 목록에서 참가를 취소할 수 있어요.</p> */}
+            {beforePreview && (
+              <p className="info-text">참석이 힘들다면 참석자 목록에서 참가를 취소할 수 있어요.</p>
+            )}
           </ButtonBox>
         </Form>
       </Main>

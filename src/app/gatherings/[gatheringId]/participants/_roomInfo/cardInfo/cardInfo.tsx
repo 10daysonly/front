@@ -18,7 +18,7 @@ export default function CardInfo() {
     <div className={`invite-info`}>
       <div className={`invite-room-image`}>
         {/* <Image alt="card image" src={inviteCard.image} width={300} height={200} /> */}
-        <Image alt="card image" src={dummyImage.src} width={300} height={200} />
+        <Image alt="card image" src={inviteCard.image} width={300} height={200} />
       </div>
       <Typography level={1}>{inviteCard.name}sdgsg</Typography>
       <DataInfo icon={<Icon icon="calendarLarge" />} title="Date">

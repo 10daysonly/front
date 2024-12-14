@@ -124,7 +124,11 @@ export default function Home() {
 
   return (
     <Layout page="invite-card">
-      <LogoHeader />
+      <LogoHeader
+        onClick={() => {
+          router.push("/");
+        }}
+      />
       <ImagesModal visible={isModalVisible} onClose={handleCancel} />
       <Main>
         <ContentBox>
