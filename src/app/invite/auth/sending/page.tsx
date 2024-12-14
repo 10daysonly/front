@@ -36,7 +36,11 @@ export default function Home() {
     // 미리보기 화면에서 왔을경우
     if (beforePreview) {
       function base64urlEncode(str: any) {
-        return Buffer.from(str).toString("base64url");
+        return Buffer.from(str)
+          .toString("base64") // 일반 base64 인코딩
+          .replace(/\+/g, "-") // '+'를 '-'로 변환
+          .replace(/\//g, "_") // '/'를 '_'로 변환
+          .replace(/=+$/, ""); // '=' 패딩 제거
       }
 
       // 헤더 생성
@@ -47,8 +51,8 @@ export default function Home() {
 
       // 페이로드 생성
       const payload = {
-        sub: "lotek60370@pokeline.com",
-        name: "sddd",
+        sub: values.hostEmail,
+        name: values.name,
       };
 
       // 각 부분을 Base64URL로 인코딩
