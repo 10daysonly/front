@@ -29,7 +29,7 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
   const [images, setImages] = useState([]);
   const dispatch = useAppDispatch();
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
-  const [activeKey, setActiveKey] = useState<string>("1"); // 활성화된 탭을 관리
+  const [activeKey, setActiveKey] = useState<string>("3"); // 활성화된 탭을 관리
   const [searchText, setSearchText] = useState("파티");
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
   // 짤 리스트 업데이트
   const meme = async () => {
     let images = await axios.get(
-      `https://g.tenor.com/v1/search?q=${searchText}&key=LIVDSRZULELA&limit=4`
+      `https://g.tenor.com/v1/search?q=${searchText}&key=LIVDSRZULELA&limit=10`
     );
     setImages(images.data.results.map((url: any) => url.media[0].gif.url));
   };
@@ -96,16 +96,16 @@ export default function ImagesModal({ visible, onClose }: ModalComponentProps) {
   };
 
   const items = [
-    {
-      key: "1",
-      label: "일러스트",
-      children: "Content of Tab Pane 1",
-    },
-    {
-      key: "2",
-      label: "사진",
-      children: "Content of Tab Pane 2",
-    },
+    // {
+    //   key: "1",
+    //   label: "일러스트",
+    //   children: "Content of Tab Pane 1",
+    // },
+    // {
+    //   key: "2",
+    //   label: "사진",
+    //   children: "Content of Tab Pane 2",
+    // },
     {
       key: "3",
       label: "GIF's",
