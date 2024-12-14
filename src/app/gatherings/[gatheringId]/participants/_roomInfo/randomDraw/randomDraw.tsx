@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useWebSocket } from "../../_webSockect/webSocket";
 import { useParams, useSearchParams } from "next/navigation";
+import { decodeToken } from "@/app/utils/token";
 
 export default function RandomDraw() {
   const [whichGame, setWhichGame] = useState("secret_santa");
@@ -11,6 +12,7 @@ export default function RandomDraw() {
   const { gatheringId } = useParams();
   const searchParams = useSearchParams();
   const token = searchParams.get("token"); // 쿼리스트링에서 'token'의 값을 가져옴
+  let decoded: any = decodeToken(token as string);
 
   const onclick = async () => {
     const response = await axios.post(
@@ -38,7 +40,7 @@ export default function RandomDraw() {
             {messages ? (
               <div>
                 {messages?.[messages.length - 1]?.data?.results?.find(
-                  (item: any) => item.receiver === "길똥이"
+                  (item: any) => item.receiver === decoded.name
                 )?.giver || "정보 없음"}
               </div>
             ) : (
