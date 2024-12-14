@@ -26,6 +26,9 @@ export interface IHost {
 export interface IParticipants {
   participantId: string;
   email: string;
+  imageUrl: string;
   joinedAt: string;
+  name: string;
+  status: string;
   isHost: boolean;
 }
