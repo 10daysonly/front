@@ -20,7 +20,7 @@ module.exports = {
     WEBSOCKET_URL: process.env.WEBSOCKET_URL, // 환경 변수를 클라이언트에서 사용하도록 설정
   },
   images: {
-    domains: ["randomuser.me", "media.tenor.com"], //이거 없에도 상관없는거아닌가요? 잘모름니다만 있어서 오류생김
+    domains: ["randomuser.me", "media.tenor.com", "localhost"], //이거 없에도 상관없는거아닌가요? 잘모름니다만 있어서 오류생김
     disableStaticImages: false, // 정적 이미지를 지원하도록 설정
   },
 };
