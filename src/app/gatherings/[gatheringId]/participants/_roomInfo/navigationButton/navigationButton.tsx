@@ -21,11 +21,11 @@ export default function NavigationButton() {
   };
 
   const URLCopy = async () => {
-    const textToCopy = `http://localhost:3000/gatherings/${inviteCard.gatheringId}/preview`; // 복사할 텍스트 지정
+    const textToCopy = `https://ringly.oognuyh.com/gatherings/${inviteCard.gatheringId}/preview`; // 복사할 텍스트 지정
     try {
       // 클립보드에 텍스트 복사
       await navigator.clipboard.writeText(textToCopy);
-      message.success("텍스트가 복사되었습니다: " + textToCopy);
+      message.success("URL이 복사되었습니다");
     } catch (err) {
       console.error("복사 실패:", err);
       message.error("복사에 실패했습니다.");

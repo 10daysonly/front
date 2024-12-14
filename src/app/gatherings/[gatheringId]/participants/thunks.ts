@@ -20,6 +20,24 @@ export const getGatherings = createAsyncThunk(
   }
 );
 
-function decodeFromBase64(encodedStr: string) {
-  return Buffer.from(encodedStr, "base64").toString("utf-8");
-}
+export const postParticipants = createAsyncThunk(
+  "data/fetchData",
+  async (
+    { gatheringId, userInfo }: { gatheringId: string | string[]; userInfo: any },
+    thunkAPI
+  ) => {
+    try {
+      // API 호출 (body와 동적 URL에 데이터 전달)
+      const response = await axios.post(`/api/postParticipants/${gatheringId}`, {
+        settingValue: { name: userInfo.name, email: userInfo.sub }, // Body에 담을 객체 데이터
+      });
+
+      const data = response.data;
+      console.log("Response data:", data);
+      return data;
+    } catch (error) {
+      console.error("Error in postParticipants:", error);
+      return thunkAPI.rejectWithValue("API 호출에 실패했습니다.");
+    }
+  }
+);

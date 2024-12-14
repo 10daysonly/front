@@ -12,7 +12,7 @@ export interface IInviteCard {
   additionalInfo: string;
   intro: string;
   meetAt: string | Dayjs;
-  participants?: IParticipants;
+  participants?: IParticipants[];
 }
 
 export interface IHost {

@@ -6,10 +6,12 @@ import { IInviteCard } from "./types";
 import { getGatherings } from "./gatherings/[gatheringId]/participants/thunks";
 
 export interface IInviteCardSlice {
+  isHost: boolean;
   inviteCard: IInviteCard;
 }
 
 const initialState: IInviteCardSlice = {
+  isHost: false,
   inviteCard: {
     gatheringId: "",
     host: {
@@ -27,6 +29,7 @@ const initialState: IInviteCardSlice = {
     additionalInfo: "",
     intro: "",
     meetAt: dayjs(),
+    participants: [],
   },
 };
 
@@ -34,6 +37,9 @@ export const inviteCardSlice = createSlice({
   name: "inviteCard",
   initialState,
   reducers: {
+    setIsHost: (state, action: PayloadAction<boolean>) => {
+      state.isHost = action.payload;
+    },
     resetInviteCard: (state) => {
       // inviteCard를 초기 상태로 재설정
       state.inviteCard = initialState.inviteCard;
@@ -70,6 +76,7 @@ export const inviteCardSlice = createSlice({
           dressCode: action.payload.dressCode,
           additionalInfo: action.payload.additionalInfo,
           intro: action.payload.intro,
+          participants: action.payload.participants,
         };
       })
       .addCase(getGatherings.rejected, (state, action) => {
@@ -78,6 +85,6 @@ export const inviteCardSlice = createSlice({
   },
 });
 
-export const { resetInviteCard, setInviteCard } = inviteCardSlice.actions;
+export const { setIsHost, resetInviteCard, setInviteCard } = inviteCardSlice.actions;
 
 export default inviteCardSlice.reducer;

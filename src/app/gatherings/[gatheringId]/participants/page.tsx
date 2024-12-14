@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card, ConfigProvider, DatePicker, Form, Image, Input } from "antd";
+import { Button, Card, ConfigProvider, DatePicker, Form, Image, Input, message } from "antd";
 
 import React, { useEffect, useState } from "react";
 import CardInfo from "./_roomInfo/cardInfo/cardInfo";
@@ -9,9 +9,9 @@ import GuestbookForm from "./_roomInfo/guestbookForm/guestbookForm";
 import NavigationButton from "./_roomInfo/navigationButton/navigationButton";
 import { useParams, useSearchParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { setInviteCard } from "@/app/slice";
+import { setInviteCard, setIsHost } from "@/app/slice";
 import axios from "axios";
-import { getGatherings } from "./thunks";
+import { getGatherings, postParticipants } from "./thunks";
 import { decodeToken } from "@/app/utils/token";
 
 import "./InviteRoom.scss";
@@ -20,6 +20,7 @@ import "./invite-room.module.css"; // custom css
 import Layout from "@/components/Layout";
 import Main from "@/components/Main";
 import ContentBox from "@/components/ContentBox";
+import { IParticipants } from "@/app/types";
 
 export default function Home() {
   const { gatheringId } = useParams();
@@ -32,10 +33,8 @@ export default function Home() {
     getToken();
   }, []);
 
-  // 토큰값 = 이메일  정보에 담기
-  useEffect(() => {}, [token]);
-
   const getToken = async () => {
+    // 토큰 디코드
     // decoded : {sub: string;name: string;}
     let decoded: any = decodeToken(token as string);
 
@@ -50,6 +49,25 @@ export default function Home() {
     const fetchAction = await dispatch(getGatherings(gatheringId));
     if (getGatherings.rejected.match(fetchAction)) {
       console.log("오류");
+    }
+
+    // 호스트인지 게스트인지 판단 후 게스트일 경우  /api/v1/gatherings/{gatheringId}/participants api호출하기
+    const hostUser = fetchAction.payload.participants.find(
+      (user: IParticipants) => user.isHost === true
+    );
+    const email = hostUser ? hostUser.email : null;
+
+    if (userInfo.sub == email) {
+      setIsHost(true);
+      message.success("나 호스트임");
+    } else {
+      setIsHost(false);
+      message.success("나 게스트임");
+      // 게스트 업데이트 웹서비스 보내고 다시 방정보 조회할 것
+
+      // console.log("오류나면 아마 이미 이전에 접속한 이력이있으며 카드그룹에 정보가 이미 있음");
+      const fetchAction = await dispatch(postParticipants({ gatheringId, userInfo }));
+      console.log(fetchAction);
     }
   };
 
