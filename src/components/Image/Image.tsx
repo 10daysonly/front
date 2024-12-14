@@ -9,9 +9,10 @@ interface Props {
   height?: number;
   alt?: string;
   circle?: boolean;
+  onClick?: (e: any) => void;
 }
 
-const Image = ({ src, width, height, alt = "", circle }: Props) => {
+const Image = ({ src, width, height, alt = "", circle, onClick }: Props) => {
   return (
     <div className={`ui-image ${circle ? `circle` : ""}`}>
       <NextImage
@@ -21,6 +22,7 @@ const Image = ({ src, width, height, alt = "", circle }: Props) => {
         height={height}
         {...(!(width || height) && { layout: "fill" })}
         objectFit="cover"
+        onClick={onClick}
       />
     </div>
   );

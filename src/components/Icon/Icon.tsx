@@ -42,9 +42,10 @@ const iconMap: IconMap = {
 
 interface Props {
   icon: IconName;
+  onClick?: Function;
 }
 
-const Icon = ({ icon }: Props) => {
+const Icon = ({ icon, onClick }: Props) => {
   const currentIcon = iconMap[icon];
   return (
     currentIcon && (
@@ -54,6 +55,7 @@ const Icon = ({ icon }: Props) => {
           width={currentIcon.width}
           height={currentIcon.height}
           alt=""
+          onClick={() => onClick?.()}
         />
       </span>
     )
