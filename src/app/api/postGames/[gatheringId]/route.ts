@@ -9,19 +9,20 @@ export async function POST(request: any, { params }: { params: { gatheringId: st
 
   console.log(`${URL + Path}`);
   try {
-    console.log("===========================================");
-    // console.log(request.json());
     const requestBody = await request.json();
-    console.log(requestBody);
+    console.log("=====================================================");
+    console.log();
 
     const response = await fetch(`${URL + Path}`, {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${requestBody.token}`,
         "Content-Type": "application/json",
       },
-      body: requestBody,
+      body: JSON.stringify({ type: requestBody.type }),
     });
-
+    console.log("=====================================================");
+    console.log(response);
     if (!response.ok) {
       throw new Error("Failed to send data to external API");
     }

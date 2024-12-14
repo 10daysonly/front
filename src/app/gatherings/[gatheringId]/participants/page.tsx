@@ -25,8 +25,8 @@ import { IParticipants } from "@/app/types";
 export default function Home() {
   const { gatheringId } = useParams();
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
-  const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
   const token = searchParams.get("token"); // 쿼리스트링에서 'token'의 값을 가져옴
 
   useEffect(() => {

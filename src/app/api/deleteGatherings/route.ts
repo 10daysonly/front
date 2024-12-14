@@ -4,13 +4,16 @@ export async function DELETE(request: NextRequest) {
   const URL = process.env.NEXT_PUBLIC_API_URL;
 
   const requestURL = request.nextUrl;
+
   const Path = `/api/v1/gatherings/${requestURL.searchParams.get("gatheringId")}`;
 
+  console.log("=====================================================================");
   console.log(`${URL + Path}`);
   try {
     const response = await fetch(`${URL + Path}`, {
       method: "DELETE",
       headers: {
+        Authorization: `Bearer ${requestURL.searchParams.get("token")}`,
         "Content-Type": "application/json",
       },
     });

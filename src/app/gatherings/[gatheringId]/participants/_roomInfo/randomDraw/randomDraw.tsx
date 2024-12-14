@@ -3,10 +3,14 @@ import { Button, Radio } from "antd";
 import axios from "axios";
 import { useState } from "react";
 import { useWebSocket } from "../../_webSockect/webSocket";
+import { useParams, useSearchParams } from "next/navigation";
 
 export default function RandomDraw() {
   const [value, setValue] = useState(1);
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
+  const { gatheringId } = useParams();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token"); // 쿼리스트링에서 'token'의 값을 가져옴
 
   const onChange = (e: any) => {
     console.log("radio checked", e.target.value);
@@ -15,8 +19,8 @@ export default function RandomDraw() {
 
   const onclick = async () => {
     const response = await axios.post(
-      `/api/postGames/${inviteCard.gatheringId}`,
-      JSON.stringify({ type: "random_pick" }),
+      `/api/postGames/${gatheringId}`,
+      JSON.stringify({ type: "random_pick", token: token }),
       {
         headers: {
           "Content-Type": "application/json", // 헤더 설정
@@ -26,10 +30,6 @@ export default function RandomDraw() {
     const data = await response.data;
     console.log(response);
   };
-
-  const gatheringId = "MIKnlAITUD1Fh2NBgNa9t"; // 동적으로 받아올 값
-  const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3RlazYwMzcwQHBva2VsaW5lLmNvbSIsIm5hbWUiOiLquLjrmKXsnbQifQ.biaBKAY-BxPtrXvWl0xos6FPKqwzd1L1d69GfNS6RPE"; // 동적으로 받아올 토큰
 
   const { isConnected, messages, error, sendMessage } = useWebSocket({ gatheringId, token });
 

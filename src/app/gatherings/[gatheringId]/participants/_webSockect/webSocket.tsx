@@ -16,7 +16,7 @@ export const useWebSocket = ({ gatheringId, token }: WebSocketHookProps) => {
 
   useEffect(() => {
     // WebSocket URL 동적 생성
-    const wsUrl = `wss://ringly-api.oognuyh.com/ws/gatherings/${gatheringId}?token=${token}`;
+    const wsUrl = `${process.env.WEBSOCKET_URL}/${gatheringId}?token=${token}`;
 
     // WebSocket 연결
     const ws = new WebSocket(wsUrl);

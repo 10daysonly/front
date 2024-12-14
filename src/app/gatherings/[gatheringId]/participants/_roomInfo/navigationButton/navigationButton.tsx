@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { Button, message } from "antd";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { setFixButton } from "./navigationButtonSlice";
 import { resetInviteCard } from "@/app/slice";
 import axios from "axios";
@@ -14,6 +14,8 @@ export default function NavigationButton() {
   const dispatch = useAppDispatch();
   const { inviteCard } = useAppSelector((state) => state.inviteCardSlice);
   const { gatheringId } = useParams();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token"); // 쿼리스트링에서 'token'의 값을 가져옴
 
   const fixCard = () => {
     dispatch(setFixButton(true));
@@ -42,6 +44,7 @@ export default function NavigationButton() {
     const response = await axios.delete("/api/deleteGatherings", {
       params: {
         gatheringId: gatheringId,
+        token: token,
       },
     });
 
