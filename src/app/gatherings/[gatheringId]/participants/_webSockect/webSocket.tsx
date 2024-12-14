@@ -1,49 +1,71 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { io, Socket } from "socket.io-client";
 
-export default function WebSocketComponent() {
-  const [messages, setMessages] = useState<string[]>([]);
+interface WebSocketHookProps {
+  gatheringId: string;
+  token: string;
+}
+
+export const useWebSocket = ({ gatheringId, token }: WebSocketHookProps) => {
   const [socket, setSocket] = useState<WebSocket | null>(null);
+  const [isConnected, setIsConnected] = useState(false);
+  const [messages, setMessages] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // 웹소켓 서버 URL
-    const ws = new WebSocket(process.env.WEBSOCKET_URL || "");
+    // WebSocket URL 동적 생성
+    const wsUrl = `wss://ringly-api.oognuyh.com/ws/gatherings/${gatheringId}?token=${token}`;
 
-    // 연결 시 이벤트
+    // WebSocket 연결
+    const ws = new WebSocket(wsUrl);
+
+    // 연결 성공 핸들러
     ws.onopen = () => {
-      console.log("WebSocket connected");
-      ws.send(JSON.stringify({ type: "HELLO", message: "Hello Server!" }));
+      console.log("WebSocket 연결 성공");
+      setIsConnected(true);
     };
 
-    // 메시지 수신 시 이벤트
+    // 메시지 수신 핸들러
     ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("Message received:", data);
-      setMessages((prev) => [...prev, data.message]);
+      const message = JSON.parse(event.data);
+      setMessages((prev) => [...prev, message]);
     };
 
-    // 연결 종료 시 이벤트
-    ws.onclose = () => {
-      console.log("WebSocket disconnected");
+    // 연결 종료 핸들러
+    ws.onclose = (event) => {
+      console.log("WebSocket 연결 종료:", event);
+      setIsConnected(false);
     };
 
-    // 에러 처리
+    // 에러 핸들러
     ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
+      console.error("WebSocket 에러:", error);
+      setError("WebSocket 연결 중 오류 발생");
     };
 
-    // 컴포넌트 unmount 시 연결 종료
+    // 소켓 상태 저장
+    setSocket(ws);
+
+    // 컴포넌트 언마운트 시 연결 종료
     return () => {
       ws.close();
     };
-  }, []);
+  }, [gatheringId, token]);
 
-  return (
-    <ul>
-      {messages.map((msg, idx) => (
-        <li key={idx}>{msg}</li>
-      ))}
-    </ul>
-  );
-}
+  // 메시지 전송 함법
+  const sendMessage = (message: any) => {
+    if (socket && isConnected) {
+      socket.send(JSON.stringify(message));
+    }
+  };
+
+  return {
+    socket,
+    isConnected,
+    messages,
+    error,
+    sendMessage,
+  };
+};

@@ -2,6 +2,7 @@ import { useAppSelector } from "@/app/store";
 import { Button, Radio } from "antd";
 import axios from "axios";
 import { useState } from "react";
+import { useWebSocket } from "../../_webSockect/webSocket";
 
 export default function RandomDraw() {
   const [value, setValue] = useState(1);
@@ -26,9 +27,23 @@ export default function RandomDraw() {
     console.log(response);
   };
 
+  const gatheringId = "MIKnlAITUD1Fh2NBgNa9t"; // 동적으로 받아올 값
+  const token =
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb3RlazYwMzcwQHBva2VsaW5lLmNvbSIsIm5hbWUiOiLquLjrmKXsnbQifQ.biaBKAY-BxPtrXvWl0xos6FPKqwzd1L1d69GfNS6RPE"; // 동적으로 받아올 토큰
+
+  const { isConnected, messages, error, sendMessage } = useWebSocket({ gatheringId, token });
+
   return (
     <div>
       <p>랜덤 뽑기</p>
+      <div>
+        <div>연결 상태: {isConnected ? "연결됨" : "연결 안됨"}</div>
+        <div>
+          {messages.map((msg, index) => (
+            <div key={index}>{JSON.stringify(msg)}</div>
+          ))}
+        </div>
+      </div>
       <Radio.Group
         onChange={onChange}
         value={value}
