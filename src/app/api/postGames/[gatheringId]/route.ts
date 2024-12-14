@@ -1,19 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(request: NextRequest, { params }: { params: { gatheringId: string } }) {
-  const URL = process.env.NEXT_PUBLIC_API_URL;
+export async function POST(request: any, { params }: { params: { gatheringId: string } }) {
   const gatheringId = params.gatheringId;
-  const Path = `/api/v1/gatherings/${gatheringId}`;
 
+  const URL = process.env.NEXT_PUBLIC_API_URL;
+  // const Path = "/api/v1/gatherings";
+  const Path = `/api/v1/gatherings/${gatheringId}/games`;
+
+  console.log(`${URL + Path}`);
   try {
+    console.log("===========================================");
+    // console.log(request.json());
     const requestBody = await request.json();
+    console.log(requestBody);
 
     const response = await fetch(`${URL + Path}`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(requestBody),
+      body: requestBody,
     });
 
     if (!response.ok) {

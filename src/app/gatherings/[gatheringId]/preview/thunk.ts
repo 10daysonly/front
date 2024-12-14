@@ -20,7 +20,3 @@ export const getGatheringsPreview = createAsyncThunk(
     return data; // 데이터 반환
   }
 );
-
-function decodeFromBase64(encodedStr: string) {
-  return Buffer.from(encodedStr, "base64").toString("utf-8");
-}
