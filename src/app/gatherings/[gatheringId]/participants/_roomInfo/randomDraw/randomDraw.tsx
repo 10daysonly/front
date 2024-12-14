@@ -27,6 +27,7 @@ export default function RandomDraw() {
     );
     const data = await response.data;
     console.log(response);
+    setMessage(response);
   };
 
   const { isConnected, messages, error, sendMessage } = useWebSocket({ gatheringId, token });
@@ -71,7 +72,7 @@ export default function RandomDraw() {
               </>
             ) : (
               <>
-                <div>산타아님</div>
+                <div>{message.data.results[0].picked}</div>
               </>
             )}
           </div>
