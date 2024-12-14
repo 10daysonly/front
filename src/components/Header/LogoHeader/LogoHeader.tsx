@@ -16,7 +16,8 @@ const LogoHeader = ({ onClick }: Props) => {
       <h1 className={`logo`}>
         <a
           href="#"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             onClick?.();
           }}
         >
