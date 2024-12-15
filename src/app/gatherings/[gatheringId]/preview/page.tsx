@@ -62,11 +62,13 @@ export default function Home() {
         <div className={`preview-card-image`}>
           <Image src={inviteCard.image} width={311} height={311} />
         </div>
-        <div>{data?.day}</div>
-        <div>{data?.month}</div>
-        <div>{data?.dayOfWeek}</div>
-        <div>{data?.amPm}</div>
-        <div>{data?.hour}</div>
+        <DataInfo icon={<Icon icon="calendarLarge" />} title="Date">
+          {data?.month} 월 {data?.day}일 {data?.dayOfWeek}
+        </DataInfo>
+        <DataInfo icon={<Icon icon="timeLarge" />} title="Time">
+          {data?.amPm} {data?.hour}
+        </DataInfo>
+
         <div className={`preview-card-info`}>
           <div className="preview-card-datetime">
             {/* <div className="preview-card-date">{inviteCard.meetAt}</div> */}

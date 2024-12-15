@@ -64,11 +64,6 @@ export default function Home() {
     } else {
       dispatch(setIsHost(false));
       console.log("나 게스트임");
-      // 게스트 업데이트 웹서비스 보내고 다시 방정보 조회할 것
-
-      // console.log("오류나면 아마 이미 이전에 접속한 이력이있으며 카드그룹에 정보가 이미 있음");
-      const fetchAction = await dispatch(postParticipants({ gatheringId, userInfo }));
-      console.log(fetchAction);
     }
   };
 
