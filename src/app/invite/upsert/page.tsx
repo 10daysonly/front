@@ -136,7 +136,7 @@ export default function Home() {
             name="basic"
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
-            initialValues={inviteCard}
+            initialValues={{ ...inviteCard, meetAt: dayjs(inviteCard.meetAt) }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
