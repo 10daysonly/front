@@ -76,7 +76,7 @@ export default function Home() {
         <Form
           name="basic"
           labelCol={{ span: 8 }}
-          initialValues={{ remember: true }}
+          initialValues={{ name: inviteCard.hostName, hostEmail: inviteCard.hostEmail }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
