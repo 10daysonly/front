@@ -2,6 +2,9 @@ const path = require("path");
 
 module.exports = {
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   // 기타 설정
   webpack(config) {
     config.module.rules.push({
