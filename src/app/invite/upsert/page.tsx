@@ -52,6 +52,24 @@ export default function Home() {
     setIsModalVisible(false); // 모달을 닫기
   };
 
+  useEffect(() => {
+    const getImg = async () => {
+      const url = `https://g.tenor.com/v1/random?q=파티&key=LIVDSRZULELA&limit=1`;
+
+      let images = await axios.get(url);
+
+      if (inviteCard.image == "") {
+        dispatch(
+          setInviteCard({
+            ...inviteCard,
+            image: images.data.results.map((url: any) => url.media[0].gif.url)[0],
+          })
+        );
+      }
+    };
+    getImg();
+  }, []);
+
   const onFinish = async (values: any) => {
     console.log("폼 데이터:", values); // 제출된 데이터 출력
     const storedData = localStorage.getItem("user");
