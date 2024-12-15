@@ -8,7 +8,7 @@ ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ARG WEBSOCKET_URL 
 ENV WEBSOCKET_URL=$WEBSOCKET_URL 
 
-COPY package*.json ./
+COPY package.json package-lock.json .npmrc ./
 
 RUN npm install
 

@@ -1,48 +1,48 @@
 {
-  "name": "10daysonly",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "^2.4.0",
-    "@mobiscroll/react": "npm:@mobiscroll/react-next-trial@^5.32.2",
-    "antd": "^5.22.3",
-    "axios": "^1.7.9",
-    "jsonwebtoken": "^9.0.2",
-    "next": "^14.2.20",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-redux": "^9.1.2",
-    "sass": "^1.82.0",
-    "socket.io-client": "^4.8.1"
-  },
-  "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.2",
-    "@storybook/addon-essentials": "^8.4.7",
-    "@storybook/addon-interactions": "^8.4.7",
-    "@storybook/addon-onboarding": "^8.4.7",
-    "@storybook/blocks": "^8.4.7",
-    "@storybook/nextjs": "^8.4.7",
-    "@storybook/react": "^8.4.7",
-    "@storybook/test": "^8.4.7",
-    "@svgr/webpack": "^8.1.0",
-    "@types/jsonwebtoken": "^9.0.7",
-    "@types/node": "^20",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "storybook": "^8.4.7",
-    "typescript": "^5"
-  },
-  "prettier": {
-    "printWidth": 100
-  }
+    "name": "10daysonly",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
+    },
+    "dependencies": {
+        "@mobiscroll/react": "npm:@mobiscroll/react-next-trial@^5.32.2",
+        "@reduxjs/toolkit": "^2.4.0",
+        "antd": "^5.22.3",
+        "axios": "^1.7.9",
+        "jsonwebtoken": "^9.0.2",
+        "next": "^14.2.20",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-redux": "^9.1.2",
+        "sass": "^1.82.0",
+        "socket.io-client": "^4.8.1"
+    },
+    "devDependencies": {
+        "@chromatic-com/storybook": "^3.2.2",
+        "@storybook/addon-essentials": "^8.4.7",
+        "@storybook/addon-interactions": "^8.4.7",
+        "@storybook/addon-onboarding": "^8.4.7",
+        "@storybook/blocks": "^8.4.7",
+        "@storybook/nextjs": "^8.4.7",
+        "@storybook/react": "^8.4.7",
+        "@storybook/test": "^8.4.7",
+        "@svgr/webpack": "^8.1.0",
+        "@types/jsonwebtoken": "^9.0.7",
+        "@types/node": "^20",
+        "@types/react": "^18.2.14",
+        "@types/react-dom": "^18.2.7",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "storybook": "^8.4.7",
+        "typescript": "^5"
+    },
+    "prettier": {
+        "printWidth": 100
+    }
 }
